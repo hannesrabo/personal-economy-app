@@ -1,61 +1,52 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { createMaterialTopTabNavigator } from 'react-navigation';
-import Expo from 'expo'
 
 // import ChartExample from './components/ExampleComponent/ExampleComponent'
 // import TestComp from './components/TestComponent/TestComponent'
 
-import { YellowBox } from 'react-native';
-YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
+import StackNavigator from './components/Navigation/Navigation'
+import NavigationService from './components/Navigation/NavigationService';
 
-import OverviewScreen from './screens/OverviewScreen/OverviewScreen'
-import BudgetScreen from './screens/BudgetScreen/BudgetScreen'
-import DetailsScreen from './screens/DetailsScreen/DetailsScreen'
+import { YellowBox } from 'react-native'
+YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader'])
 
 import Color from './color'
 
-const NavigationRouter = new createMaterialTopTabNavigator(
-	{
-		Details: {
-			screen: DetailsScreen
-		},
-		Overview: {
-			screen: OverviewScreen,
-		},
-		Budget: {
-			screen: BudgetScreen,
-		},
-	}
-	,
-	{
-		swipeEnabled: true,
-		initialRouteName: 'Overview',
-		tabBarOptions: {
-			style: {
-				backgroundColor: Color.highlight,
-			},
-			indicatorStyle: {
-				backgroundColor: Color.highlight_light,
-			}
-		},
-	}
-)
+// import GestureRecognizer from 'react-native-swipe-gestures'
+// import handleSwipe from './components/Navigation/SwipeControl'
 
 export default class App extends React.Component {
+	componentDidMount = () => {
+
+	}
+
 	render() {
-		console.log("Rerendered app")
+		const config = {
+			velocityThreshold: 0.25,
+			directionalOffsetThreshold: 80
+		};
+
+		console.log("Renderer app")
 		return (
 			<View style={styles.wrapper}>
-				<NavigationRouter />
-			</View>
+				<StackNavigator
+					ref={navigatorRef => {
+						NavigationService.setTopLevelNavigator(navigatorRef);
+					}}
+					onNavigationStateChange={(prevState, newState) => {
+						//this._getCurrentRouteName(newState)
+						//console.log("State")
+						//console.log(newState)
+					}}
+				/>
+			</View >
 		);
 	}
+
 }
 
 const styles = StyleSheet.create({
 	wrapper: {
-		// paddingTop: Expo.Constants.statusBarHeight,
 		flex: 1,
 	},
 	container: {
@@ -73,8 +64,4 @@ const styles = StyleSheet.create({
 		// alignItems: 'flex-end',
 		backgroundColor: '#eeeeee',
 	},
-	// chart: {
-	//   width: 1080,
-	//   height: 800,
-	// }
 });
