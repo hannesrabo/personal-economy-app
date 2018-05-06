@@ -9,7 +9,12 @@ import TransactionOverviewScreen from '../screens/TransactionOverviewScreen/Tran
 
 const RootRouter = createStackNavigator(
     {
-        Overview: StartScreenRouter,
+        Overview: {
+            screen: StartScreenRouter,
+            navigationOptions: {
+                header: null, // Hiding the top bar for start pages
+            }
+        },
         AddPost: AddPostRouter,
         TransactionOverview: {
             screen: TransactionOverviewScreen
