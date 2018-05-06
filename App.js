@@ -1,25 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-// import ChartExample from './components/ExampleComponent/ExampleComponent'
-// import TestComp from './components/TestComponent/TestComponent'
-
-import StackNavigator from './components/Navigation/Navigation'
-import NavigationService from './components/Navigation/NavigationService';
-
 import { YellowBox } from 'react-native'
 YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader'])
 
 import Color from './color'
+import NavigationService from './routing/NavigationService'
+import RootRouter from './routing/RootRouter';
 
-// import GestureRecognizer from 'react-native-swipe-gestures'
-// import handleSwipe from './components/Navigation/SwipeControl'
 
 export default class App extends React.Component {
-	componentDidMount = () => {
-
-	}
-
 	render() {
 		const config = {
 			velocityThreshold: 0.25,
@@ -28,18 +18,18 @@ export default class App extends React.Component {
 
 		console.log("Renderer app")
 		return (
-			<View style={styles.wrapper}>
-				<StackNavigator
-					ref={navigatorRef => {
-						NavigationService.setTopLevelNavigator(navigatorRef);
-					}}
-					onNavigationStateChange={(prevState, newState) => {
-						//this._getCurrentRouteName(newState)
-						//console.log("State")
-						//console.log(newState)
-					}}
-				/>
-			</View >
+			<View style={{ backgroundColor: '#000000', flex: 1 }}>
+				<View style={styles.wrapper}>
+					<RootRouter
+						ref={navigatorRef => {
+							NavigationService.setTopLevelNavigator(navigatorRef);
+						}}
+						onNavigationStateChange={(prevState, newState) => {
+							// Do some update?
+						}}
+					/>
+				</View >
+			</View>
 		);
 	}
 
@@ -48,6 +38,10 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
 	wrapper: {
 		flex: 1,
+		borderTopLeftRadius: 7,
+		borderTopRightRadius: 7,
+		backgroundColor: '#000',
+		overflow: 'hidden',
 	},
 	container: {
 		flex: 1,

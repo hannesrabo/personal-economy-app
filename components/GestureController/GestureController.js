@@ -1,6 +1,8 @@
 import React from 'react'
 import GestureRecognizer from 'react-native-swipe-gestures'
-import NavigationService from '../../components/Navigation/NavigationService'
+import NavigationService from '../../routing/NavigationService'
+
+// import handleSwipe from './components/Navigation/SwipeControl'
 
 const config = {
     velocityThreshold: 0.2,

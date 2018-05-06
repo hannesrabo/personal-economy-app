@@ -2,31 +2,29 @@ import React from 'react'
 import { Easing, Animated } from 'react-native'
 import { createStackNavigator } from 'react-navigation'
 
-import OverviewScreen from '../../screens/OverviewScreen/OverviewScreen'
-import BudgetScreen from '../../screens/BudgetScreen/BudgetScreen'
-// import DetailsScreen from '../../screens/DetailsScreen/DetailsScreen'
-import AddPostRouter from './PostScreenNavigation'
+import AddPostRouter from './AddReceiptRouter'
+import StartScreenRouter from './StartScreenRouter'
 
-const StackNavigator = createStackNavigator(
+import TransactionOverviewScreen from '../screens/TransactionOverviewScreen/TransactionOverviewScreen'
+
+const RootRouter = createStackNavigator(
     {
-        Overview: {
-            screen: OverviewScreen,
-        },
+        Overview: StartScreenRouter,
         AddPost: AddPostRouter,
-        // BudgetScreen: BudgetScreen,
+        TransactionOverview: {
+            screen: TransactionOverviewScreen
+        }
     },
     {
-        headerMode: 'none',
+        headerMode: 'screen',
         mode: 'modal',
         navigationOptions: {
-            gesturesEnabled: false,
+            gesturesEnabled: true,
+            // header: null, // Here is where we are to update the header
         },
-        // navigatorStyle: {
-        //     enabledBackGestureFullScreen: true,
-        // },
         transitionConfig: () => ({
             transitionSpec: {
-                duration: 300,
+                duration: 400,
                 easing: Easing.out(Easing.poly(4)),
                 timing: Animated.timing,
             },
@@ -51,4 +49,4 @@ const StackNavigator = createStackNavigator(
     }
 );
 
-export default StackNavigator
+export default RootRouter

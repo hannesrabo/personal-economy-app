@@ -6,7 +6,7 @@ import GestureController from '../../components/GestureController/GestureControl
 export default class AddBudgetPost extends React.Component {
     render() {
         return (
-            <GestureController >
+            <GestureController swipeDownPath="Overview">
                 <Text> Adding a budget post</Text>
             </GestureController>
         )

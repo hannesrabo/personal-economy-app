@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
-import { Text } from 'react-native'
+import { Text, View } from 'react-native'
+
+import BudgetCategoryCard from '../../components/BudgetCategoryCard/BudgetCategoryCard'
 
 class BudgetScreen extends Component {
     render() {
         return (
-            <Text>First Tab Screen</Text>
+            <View>
+                <Text>First Tab Screen</Text>
+                <BudgetCategoryCard />
+            </View>
         )
     }
 }
