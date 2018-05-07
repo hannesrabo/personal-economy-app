@@ -3,9 +3,15 @@ import { Text, View, Button, StyleSheet } from 'react-native'
 import NavigationService from '../../routing/NavigationService'
 import OpenDownButton from '../Button/OpenDownButton'
 
-export default class BudgetCategoryCard extends React.Component {
+export default class ExpandableCard extends React.Component {
+    static defaultProps = {
+        color: 'gray',
+        title: 'Card Title',
+    };
+
     constructor(props) {
         super(props)
+
         this.state = { expanded: false }
     }
 
@@ -15,13 +21,22 @@ export default class BudgetCategoryCard extends React.Component {
         })
     }
 
+    headerClick = () => {
+        if (this.props.onTitlePress)
+            this.props.onTitlePress()
+    }
+
     render() {
 
         // Custom styling if it is a sub category card
         let subCardStyle = {}
         if (this.props.subCard) {
-            subCardStyle = styles.boxSubCardStyle
-
+            subCardStyle = {
+                borderRadius: 0,
+                margin: 0,
+                borderLeftWidth: 7,
+                borderColor: this.props.color,
+            }
         }
 
         // Animation of height
@@ -39,9 +54,9 @@ export default class BudgetCategoryCard extends React.Component {
                 <View style={styles.headerWrapper}>
                     <Text
                         style={styles.header}
-                    // {/* onPress={this.headerClick} */}
+                        onPress={this.headerClick}
                     >
-                        The Month
+                        {this.props.title}
                     </Text>
                     <OpenDownButton onPress={this.dropDownClick} />
                 </View>
@@ -65,10 +80,6 @@ const styles = StyleSheet.create({
         paddingRight: 0,
         overflow: 'hidden',
     },
-    boxSubCardStyle: {
-        borderRadius: 0,
-        margin: 0,
-    },
     headerWrapper: {
         flexDirection: 'row',
         margin: 10,
@@ -77,7 +88,6 @@ const styles = StyleSheet.create({
     },
     header: {
         height: 50,
-        color: '#ff0000',
         width: '70%',
         fontSize: 20,
         padding: 5,

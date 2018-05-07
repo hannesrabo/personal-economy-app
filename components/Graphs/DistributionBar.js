@@ -14,7 +14,7 @@ export default class DistributionBar extends React.Component {
 
 const styles = StyleSheet.create({
     barWrapper: {
-        backgroundColor: 'black',
-        height: 50,
+        backgroundColor: 'white',
+        height: 75,
     }
 })

@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { Text, ScrollView, View, StyleSheet, Button } from 'react-native'
 
-import BudgetCategoryCard from '../../components/BudgetCategoryCard/BudgetCategoryCard'
+import ExpandableCard from '../../components/ExpandableCard/ExpandableCard'
 import GraphContainer from '../../components/GraphContainer/GraphContainer'
 import DistributionBar from '../../components/Graphs/DistributionBar'
+import ExpandableHeader from '../../components/ExpandableHeader/ExpandableHeader'
 
 import NavigationService from '../../routing/NavigationService'
 
@@ -16,11 +17,14 @@ class BudgetScreen extends Component {
 
     render() {
         return (
-            <View>
-                <DistributionBar />
-                <ScrollView>
-                    <BudgetCategoryCard>
-                        <BudgetCategoryCard subCard={true}>
+            <ExpandableHeader
+                smallHeaderContent={(<DistributionBar />)}
+                largeHeaderContent={<Text>hej</Text>}
+            >
+
+                <ExpandableCard onTitlePress={() => { console.log("event") }}>
+                    <ExpandableCard subCard={true}>
+                        <View style={{ margin: 5, marginBottom: 10 }}>
                             <Text>BudgetStuff</Text>
                             <View style={styles.buttonContainer}>
                                 <Button
@@ -28,10 +32,19 @@ class BudgetScreen extends Component {
                                     onPress={this.showTransactionDetails}
                                 />
                             </View>
-                        </BudgetCategoryCard>
-                    </BudgetCategoryCard>
-                </ScrollView>
-            </View>
+                        </View>
+                    </ExpandableCard>
+                </ExpandableCard>
+                <ExpandableCard />
+                <ExpandableCard />
+                <ExpandableCard />
+                <ExpandableCard />
+                <ExpandableCard />
+                <ExpandableCard />
+                <ExpandableCard />
+                <ExpandableCard />
+                <ExpandableCard />
+            </ExpandableHeader>
         )
     }
 }
