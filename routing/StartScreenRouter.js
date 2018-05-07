@@ -11,12 +11,13 @@ import OverviewScreen from '../screens/OverviewScreen/OverviewScreen'
 
 const StartScreenRouter = createMaterialTopTabNavigator(
     {
-        Category: {
-            screen: CategoryScreen,
-        },
-        Overview: {
-            screen: OverviewScreen,
-        },
+        // Commented out to change start view
+        // Category: {
+        //     screen: CategoryScreen,
+        // },
+        // Overview: {
+        //     screen: OverviewScreen,
+        // },
         Budget: {
             screen: BudgetScreen,
         },
@@ -24,7 +25,7 @@ const StartScreenRouter = createMaterialTopTabNavigator(
     ,
     {
         swipeEnabled: true,
-        initialRouteName: 'Overview',
+        initialRouteName: 'Budget',
         // tabBarOptions: {
         //     style: {
         //         backgroundColor: Color.highlight,

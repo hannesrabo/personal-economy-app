@@ -1,6 +1,5 @@
 import React from 'react'
 import { Text, TouchableOpacity, Image, StyleSheet, Animated, } from 'react-native'
-import NavigationService from '../../routing/NavigationService'
 
 export default class OpenDownButton extends React.Component {
     constructor(props) {
@@ -12,7 +11,6 @@ export default class OpenDownButton extends React.Component {
         }
     }
     buttonClick = () => {
-        console.log("event")
         if (this.props.onPress)
             this.props.onPress()
 
@@ -35,7 +33,6 @@ export default class OpenDownButton extends React.Component {
             inputRange: [0, 180],
             outputRange: ['0deg', '-180deg']
         })
-        console.log(spin)
         return (
             <TouchableOpacity style={styles.buttonWrapper} onPress={this.buttonClick}>
                 <Animated.View styles={{

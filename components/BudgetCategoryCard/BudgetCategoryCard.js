@@ -1,65 +1,41 @@
 import React from 'react'
-import { Text, View, Button, Animated, StyleSheet, Easing } from 'react-native'
+import { Text, View, Button, StyleSheet } from 'react-native'
 import NavigationService from '../../routing/NavigationService'
 import OpenDownButton from '../Button/OpenDownButton'
 
 export default class BudgetCategoryCard extends React.Component {
     constructor(props) {
         super(props)
-        this._isAnimating = false
-        this.state = { height: new Animated.Value(), maxHeight: 1, expanded: true }
+        this.state = { expanded: false }
     }
 
     dropDownClick = () => {
-        if (!this._isAnimating) {
-            this._isAnimating = true
-            let toVal = 1
-            if (this.state.expanded) {
-                this.state.height.setValue(this.state.maxHeight);
-            } else {
-                this.state.height.setValue(1);
-                toVal = this.state.maxHeight
-            }
-
-            this.setState({
-                expanded: !this.state.expanded
-            })
-
-            Animated.timing(
-                this.state.height,
-                {
-                    toValue: toVal,
-                    duration: 150,
-                    easing: Easing.cubic
-                }
-            ).start(this.animationDone);
-        }
-    }
-
-    animationDone = () => {
-        this._isAnimating = false
-    }
-
-    showTransactionDetails = () => {
-        NavigationService.navigate('TransactionOverview')
-    }
-
-    _setMaxHeight = (event) => {
-        if (this.state.maxHeight == 1 && event.nativeEvent.layout.height != 0) {
-            this.setState({
-                maxHeight: event.nativeEvent.layout.height,
-                expanded: false,
-            });
-
-            this.state.height.setValue(event.nativeEvent.layout.height);
-            Animated.timing(this.state.height, { toValue: 1 }, { duration: 0 }).start();
-
-        }
+        this.setState({
+            expanded: !this.state.expanded
+        })
     }
 
     render() {
+
+        // Custom styling if it is a sub category card
+        let subCardStyle = {}
+        if (this.props.subCard) {
+            subCardStyle = styles.boxSubCardStyle
+
+        }
+
+        // Animation of height
+        let heightStyle = { borderTopWidth: 1 }
+        if (!this.state.expanded) {
+            heightStyle.height = 0
+            heightStyle.borderTopWidth = 0
+        }
+
         return (
-            <View style={styles.boxWrapper} elevation={2}>
+            <View
+                style={[styles.boxWrapper, subCardStyle]}
+                elevation={2}
+            >
                 <View style={styles.headerWrapper}>
                     <Text
                         style={styles.header}
@@ -69,40 +45,29 @@ export default class BudgetCategoryCard extends React.Component {
                     </Text>
                     <OpenDownButton onPress={this.dropDownClick} />
                 </View>
-                <Animated.View
-                    style={[styles.animatedContainer, {
-                        height: this.state.height,
-                        borderTopWidth: (this.state.expanded ? 1 : 0),
-                    }]}
+                <View
+                    style={[styles.animatedContainer, heightStyle]}
                 >
-                    <View
-                        style={styles.contentWrapper}
-                        onLayout={this._setMaxHeight}>
-                        <Text>BudgetStuff</Text>
-                        <View style={styles.buttonContainer}>
-                            <Button
-                                title="Show Transactions"
-                                onPress={this.showTransactionDetails}
-                            />
-                        </View>
-                    </View>
-                </Animated.View>
-            </View >
+                    {/* Render the child components. They need their own margin */}
+                    {this.props.children}
+                </View>
+            </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
     boxWrapper: {
-        // shadowOffset: { width: 15, height: 15, },
-        // shadowColor: '#000000',
-        // shadowOpacity: 1.0,
-        // shadowRadius: 10,
         margin: 8,
-        borderRadius: 5,
+        borderRadius: 3,
         backgroundColor: '#fff',
         flexDirection: 'column',
         paddingRight: 0,
+        overflow: 'hidden',
+    },
+    boxSubCardStyle: {
+        borderRadius: 0,
+        margin: 0,
     },
     headerWrapper: {
         flexDirection: 'row',
@@ -121,11 +86,6 @@ const styles = StyleSheet.create({
         borderColor: '#eee',
         width: '100%',
         overflow: 'hidden',
-        //margin: 5,
-    },
-    contentWrapper: {
-        padding: 5,
-        paddingBottom: 10,
     },
     buttonContainer: {
         width: '50%',
