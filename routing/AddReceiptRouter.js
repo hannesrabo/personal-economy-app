@@ -15,17 +15,16 @@ const AddPostRouter = createMaterialTopTabNavigator(
         Budget: {
             screen: AddBudgetPost,
         }
-    }
-    ,
+    },
     {
         swipeEnabled: true,
         initialRouteName: 'Receipt',
         tabBarOptions: {
             style: {
-                backgroundColor: Color.highlight,
+                backgroundColor: 'darkgray',
             },
             indicatorStyle: {
-                backgroundColor: Color.highlight_light,
+                backgroundColor: 'lightgray',
             }
         },
     }

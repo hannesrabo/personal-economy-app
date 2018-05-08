@@ -6,6 +6,7 @@ import AddPostRouter from './AddReceiptRouter'
 import StartScreenRouter from './StartScreenRouter'
 
 import TransactionOverviewScreen from '../screens/TransactionOverviewScreen/TransactionOverviewScreen'
+import NavigationHeader from '../components/NavigationHeader/NavigationHeader'
 
 const RootRouter = createStackNavigator(
     {
@@ -15,18 +16,24 @@ const RootRouter = createStackNavigator(
                 header: null, // Hiding the top bar for start pages
             }
         },
-        AddPost: AddPostRouter,
         TransactionOverview: {
             screen: TransactionOverviewScreen
-        }
+        },
+        AddPost: {
+            screen: AddPostRouter,
+            navigationOptions: ({ navigation }) => ({
+                title: 'add newdfsdfd',
+            })
+        },
     },
     {
+
         headerMode: 'screen',
         mode: 'modal',
-        navigationOptions: {
+        navigationOptions: ({ navigation }) => ({
             gesturesEnabled: true,
-            // header: null, // Here is where we are to update the header
-        },
+            header: (props) => { return <NavigationHeader navigation={navigation} /> }, // Here is where we are to update the header
+        }),
         transitionConfig: () => ({
             transitionSpec: {
                 duration: 400,

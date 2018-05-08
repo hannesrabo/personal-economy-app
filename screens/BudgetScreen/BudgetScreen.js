@@ -5,52 +5,9 @@ import ExpandableCard from '../../components/ExpandableCard/ExpandableCard'
 import GraphContainer from '../../components/GraphContainer/GraphContainer'
 import DistributionBar from '../../components/Graphs/DistributionBar'
 import ExpandableHeader from '../../components/ExpandableHeader/ExpandableHeader'
+import TransactionCard from '../../components/TransactionCard/TransactionCard'
 
 import NavigationService from '../../routing/NavigationService'
-
-
-class BudgetScreen extends Component {
-
-    showTransactionDetails = () => {
-        NavigationService.navigate('TransactionOverview')
-    }
-
-    render() {
-        return (
-            <ExpandableHeader
-                smallHeaderContent={(<DistributionBar />)}
-                largeHeaderContent={<Text>hej</Text>}
-            >
-
-                <ExpandableCard onTitlePress={() => { console.log("event") }}>
-                    <ExpandableCard subCard={true}>
-                        <View style={{ margin: 5, marginBottom: 10 }}>
-                            <Text>BudgetStuff</Text>
-                            <View style={styles.buttonContainer}>
-                                <Button
-                                    title="Show Transactions"
-                                    onPress={this.showTransactionDetails}
-                                />
-                            </View>
-                        </View>
-                    </ExpandableCard>
-                </ExpandableCard>
-                <ExpandableCard />
-                <ExpandableCard />
-                <ExpandableCard />
-                <ExpandableCard />
-                <ExpandableCard />
-                <ExpandableCard />
-                <ExpandableCard />
-                <ExpandableCard />
-                <ExpandableCard />
-            </ExpandableHeader>
-        )
-    }
-}
-
-export default BudgetScreen
-
 
 const styles = StyleSheet.create({
     buttonContainer: {
@@ -58,3 +15,49 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-end',
     }
 })
+
+export default class BudgetScreen extends Component {
+
+    showTransactionDetails = () => {
+        NavigationService.navigate('TransactionOverview', { title: 'Transaction Details' })
+    }
+
+    render() {
+        return (
+            <View style={{ borderLeftWidth: 8, borderColor: 'purple' }}>
+                <ExpandableHeader
+                    smallHeaderContent={(<DistributionBar />)}
+                    largeHeaderContent={<Text>hej</Text>}
+                >
+
+                    <ExpandableCard onTitlePress={() => { console.log("event") }}>
+                        <ExpandableCard subCard={true}>
+                            <View style={{ margin: 5, marginBottom: 10 }}>
+                                <TransactionCard />
+                                <TransactionCard />
+                                <TransactionCard />
+                                <Text>BudgetStuff</Text>
+                                <View style={styles.buttonContainer}>
+                                    <Button
+                                        title="Show Transactions"
+                                        onPress={this.showTransactionDetails}
+                                    />
+                                </View>
+                            </View>
+                        </ExpandableCard>
+                    </ExpandableCard>
+                    <ExpandableCard />
+                    <ExpandableCard />
+                    <ExpandableCard />
+                    <ExpandableCard />
+                    <ExpandableCard />
+                    <ExpandableCard />
+                    <ExpandableCard />
+                    <ExpandableCard />
+                    <ExpandableCard />
+                    <View style={{ margin: 20 }} />
+                </ExpandableHeader>
+            </View>
+        )
+    }
+}

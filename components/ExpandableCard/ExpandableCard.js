@@ -3,6 +3,39 @@ import { Text, View, Button, StyleSheet } from 'react-native'
 import NavigationService from '../../routing/NavigationService'
 import OpenDownButton from '../Button/OpenDownButton'
 
+const styles = StyleSheet.create({
+    boxWrapper: {
+        margin: 8,
+        marginBottom: 0,
+        borderRadius: 3,
+        backgroundColor: '#fff',
+        flexDirection: 'column',
+        paddingRight: 0,
+        overflow: 'hidden',
+    },
+    headerWrapper: {
+        flexDirection: 'row',
+        margin: 10,
+        marginBottom: 0,
+        justifyContent: 'space-between',
+    },
+    header: {
+        height: 50,
+        // width: '70%',
+        fontSize: 20,
+        padding: 5,
+    },
+    animatedContainer: {
+        borderColor: '#eee',
+        width: '100%',
+        overflow: 'hidden',
+    },
+    buttonContainer: {
+        width: '50%',
+        alignSelf: 'flex-end',
+    }
+})
+
 export default class ExpandableCard extends React.Component {
     static defaultProps = {
         color: 'gray',
@@ -24,6 +57,9 @@ export default class ExpandableCard extends React.Component {
     headerClick = () => {
         if (this.props.onTitlePress)
             this.props.onTitlePress()
+        this.setState({
+            expanded: !this.state.expanded
+        })
     }
 
     render() {
@@ -58,6 +94,16 @@ export default class ExpandableCard extends React.Component {
                     >
                         {this.props.title}
                     </Text>
+                    <Text
+                        style={[styles.header, { color: 'limegreen' }]}
+                    >
+                        $ 100
+                    </Text>
+                    <Text
+                        style={[styles.header, { color: 'red' }]}
+                    >
+                        -$ 50
+                    </Text>
                     <OpenDownButton onPress={this.dropDownClick} />
                 </View>
                 <View
@@ -70,35 +116,3 @@ export default class ExpandableCard extends React.Component {
         )
     }
 }
-
-const styles = StyleSheet.create({
-    boxWrapper: {
-        margin: 8,
-        borderRadius: 3,
-        backgroundColor: '#fff',
-        flexDirection: 'column',
-        paddingRight: 0,
-        overflow: 'hidden',
-    },
-    headerWrapper: {
-        flexDirection: 'row',
-        margin: 10,
-        marginBottom: 0,
-        justifyContent: 'space-between',
-    },
-    header: {
-        height: 50,
-        width: '70%',
-        fontSize: 20,
-        padding: 5,
-    },
-    animatedContainer: {
-        borderColor: '#eee',
-        width: '100%',
-        overflow: 'hidden',
-    },
-    buttonContainer: {
-        width: '50%',
-        alignSelf: 'flex-end',
-    }
-})

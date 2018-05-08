@@ -4,6 +4,12 @@ import { Text, View, StyleSheet, Animated, ScrollView } from 'react-native'
 const HEADER_EXPANDED_HEIGHT = 300
 const HEADER_COLLAPSED_HEIGHT = 60
 
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: 'gray',
+    }
+})
+
 export default class GraphContainer extends React.Component {
     constructor(props) {
         super(props)
@@ -40,9 +46,3 @@ export default class GraphContainer extends React.Component {
         )
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: 'gray',
-    }
-})

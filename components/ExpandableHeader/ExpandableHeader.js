@@ -7,6 +7,16 @@ import { ScrollView } from 'react-native-gesture-handler';
 const HEADER_EXPANDED_HEIGHT = 300
 const HEADER_COLLAPSED_HEIGHT = 60
 
+const styles = StyleSheet.create({
+    wrapper: {
+        height: '100%',
+    },
+    contentWrapper: {
+        flex: 1,
+        height: '100%',
+    }
+})
+
 export default class ExpandableHeader extends Component {
     static propTypes = {
         largeHeaderContent: PropType.any.isRequired,
@@ -44,10 +54,11 @@ export default class ExpandableHeader extends Component {
         return (
             <View style={styles.wrapper}>
                 <Animated.View style={{
-                    height: headerHeight, backgroundColor: 'black', width: '100%', position: 'absolute', top: 0, left: 0, justifyContent: 'center',
+                    height: headerHeight,
+                    backgroundColor: 'black', width: '100%', position: 'absolute', top: 0, left: 0, justifyContent: 'center',
                     alignItems: 'center', zIndex: 9999
                 }}>
-                    <Animated.View style={{ opacity: headerTitleOpacity, width: '100%' }}>
+                    <Animated.View style={{ opacity: headerTitleOpacity, width: '100%', position: 'absolute', bottom: 0, left: 0 }}>
                         {this.props.smallHeaderContent}
                     </Animated.View>
                     <Animated.View style={{ opacity: heroTitleOpacity }}>
@@ -55,8 +66,10 @@ export default class ExpandableHeader extends Component {
                     </Animated.View>
 
                 </Animated.View>
+                {/* <Animated.ScrollView */}
+                {/* Add code for returning the position to up or down state */}
                 <ScrollView
-                    contentContainerStyle={{ padding: 16, paddingTop: HEADER_EXPANDED_HEIGHT, overflow: 'hidden' }}
+                    contentContainerStyle={{ paddingTop: HEADER_EXPANDED_HEIGHT, overflow: 'hidden' }}
                     onScroll={Animated.event(
                         [{
                             nativeEvent: {
@@ -64,24 +77,17 @@ export default class ExpandableHeader extends Component {
                                     y: this.state.scrollY
                                 }
                             }
-                        }])}
+                        }],
+                        //{ useNativeDriver: true }
+                    )}
                     scrollEventThrottle={16}>
 
                     <View style={styles.contentWrapper}>
                         {this.props.children}
                     </View>
+                    {/* </Animated.ScrollView> */}
                 </ScrollView>
             </View>
         )
     }
 }
-
-const styles = StyleSheet.create({
-    wrapper: {
-        flex: 1,
-        height: '100%',
-    },
-    contentWrapper: {
-        flex: 1,
-    }
-})

@@ -6,11 +6,33 @@ import GestureController from '../../components/GestureController/GestureControl
 import GraphContainer from '../../components/GraphContainer/GraphContainer'
 import { ScrollView } from 'react-native-gesture-handler';
 import ExpandableHeader from '../../components/ExpandableHeader/ExpandableHeader'
+import RoundButton from '../../components/Button/RoundButton'
 
 const HEADER_EXPANDED_HEIGHT = 300
 const HEADER_COLLAPSED_HEIGHT = 60
 
-class OverviewScreen extends Component {
+const styles = StyleSheet.create({
+    wrapper: {
+        paddingBottom: 15,
+        flex: 1,
+        height: '100%',
+        position: 'relative',
+        // borderWidth: 1,
+        // borderColor: 'red',
+    },
+    contentWrapper: {
+        flex: 1,
+        borderTopWidth: 8,
+        borderColor: 'purple',
+    },
+    buttonContainer: {
+        position: 'absolute',
+        bottom: 20,
+        right: 20,
+    },
+})
+
+export default class OverviewScreen extends Component {
     constructor(props) {
         super(props)
 
@@ -20,9 +42,7 @@ class OverviewScreen extends Component {
     }
 
     buttonAddClick = () => {
-        console.log("Button pushed")
-        this.props.navigation.push('AddPost')
-        // this.props.navigation.push('BudgetScreen')
+        this.props.navigation.push('AddPost', { title: 'Add new receipt' })
     }
 
     render() {
@@ -36,9 +56,6 @@ class OverviewScreen extends Component {
 
         return (
             <View style={styles.wrapper}>
-                {/* <GraphContainer>
-                    <Text>This is the graph</Text>
-                </GraphContainer> */}
                 <ExpandableHeader
                     largeHeaderContent={largeHeader}
                     smallHeaderContent={smallHeader}
@@ -54,30 +71,14 @@ class OverviewScreen extends Component {
                         <Text style={{ margin: 20 }} >Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum </Text>
                     </View>
                 </ExpandableHeader>
-                <Button
-                    style={styles.button}
-                    onPress={this.buttonAddClick}
-                    title="Add Post"
-                    // style={styles.button}
-                    color={Color.button_highlight}
-                />
-            </View >
+                <View style={styles.buttonContainer}>
+                    <RoundButton
+                        style={styles.button}
+                        onPress={this.buttonAddClick}
+                        elevation={5}
+                    />
+                </View>
+            </View>
         )
     }
 }
-
-const styles = StyleSheet.create({
-    wrapper: {
-        paddingBottom: 15,
-        flex: 1,
-        height: '100%',
-    },
-    contentWrapper: {
-        flex: 1,
-    },
-    button: {
-        flex: 0,
-    }
-})
-
-export default OverviewScreen

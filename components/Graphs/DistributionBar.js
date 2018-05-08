@@ -1,6 +1,13 @@
 import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 
+const styles = StyleSheet.create({
+    barWrapper: {
+        backgroundColor: 'white',
+        height: 60,
+    }
+})
+
 export default class DistributionBar extends React.Component {
 
     render() {
@@ -11,10 +18,3 @@ export default class DistributionBar extends React.Component {
         )
     }
 }
-
-const styles = StyleSheet.create({
-    barWrapper: {
-        backgroundColor: 'white',
-        height: 75,
-    }
-})
