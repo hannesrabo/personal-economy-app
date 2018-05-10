@@ -1,92 +1,92 @@
-import React, { Component } from 'react'
-import { View, Text, StyleSheet, Button, Animated } from 'react-native'
-import PropType from 'prop-types'
+import React from 'react'
+import { StyleSheet, Text, View, ScrollView, Animated } from 'react-native'
+import { AnimatedHeaderCollapsed, PlaceholderHeader, AnimatedHeaderExpanded } from './AnimatedHeader'
+import PropTypes from 'prop-types'
 
-import { ScrollView } from 'react-native-gesture-handler';
-
-const HEADER_EXPANDED_HEIGHT = 300
-const HEADER_COLLAPSED_HEIGHT = 60
+export const scrollRangeForAnimation = 250;
 
 const styles = StyleSheet.create({
-    wrapper: {
-        height: '100%',
-    },
-    contentWrapper: {
+    container: {
         flex: 1,
         height: '100%',
+        width: '100%',
+        backgroundColor: 'black',
+    },
+    scrollView: {
+        flex: 1,
+        zIndex: 5
     }
 })
 
-export default class ExpandableHeader extends Component {
+export default class ExpandableHeader extends React.Component {
     static propTypes = {
-        largeHeaderContent: PropType.any.isRequired,
-        smallHeaderContent: PropType.any.isRequired,
+        renderExpandedHeader: PropTypes.func.isRequired,
+        renderCollapsedHeader: PropTypes.func.isRequired,
     }
 
     constructor(props) {
         super(props)
-
         this.state = {
+            _scrollView: null,
             scrollY: new Animated.Value(0)
         }
     }
 
+    onScrollEndSnapToEdge = event => {
+        const y = event.nativeEvent.contentOffset.y;
+        if (0 < y && y < scrollRangeForAnimation / 2) {
+            if (this.state._scrollView) {
+                this.state._scrollView.scrollTo({ y: 0 });
+            }
+        } else if (scrollRangeForAnimation / 2 <= y && y < scrollRangeForAnimation) {
+            if (this.state._scrollView) {
+                this.state._scrollView.scrollTo({ y: scrollRangeForAnimation });
+            }
+        }
+    };
+
     render() {
-
-        // Calculation of visibility props
-        const headerHeight = this.state.scrollY.interpolate({
-            inputRange: [0, HEADER_EXPANDED_HEIGHT - HEADER_COLLAPSED_HEIGHT],
-            outputRange: [HEADER_EXPANDED_HEIGHT, HEADER_COLLAPSED_HEIGHT],
-            extrapolate: 'clamp'
-        })
-        const headerTitleOpacity = this.state.scrollY.interpolate({
-            inputRange: [0, HEADER_EXPANDED_HEIGHT - HEADER_COLLAPSED_HEIGHT],
+        const animationRange = this.state.scrollY.interpolate({
+            inputRange: [0, scrollRangeForAnimation],
             outputRange: [0, 1],
-            extrapolate: 'clamp'
-        })
-        const heroTitleOpacity = this.state.scrollY.interpolate({
-            inputRange: [0, HEADER_EXPANDED_HEIGHT - HEADER_COLLAPSED_HEIGHT],
-            outputRange: [1, 0],
-            extrapolate: 'clamp'
+            extrapolate: 'clamp',
         })
 
-        // Rendering stuff
         return (
-            <View style={styles.wrapper}>
-                <Animated.View style={{
-                    height: headerHeight,
-                    backgroundColor: 'black', width: '100%', position: 'absolute', top: 0, left: 0, justifyContent: 'center',
-                    alignItems: 'center', zIndex: 9999
-                }}>
-                    <Animated.View style={{ opacity: headerTitleOpacity, width: '100%', position: 'absolute', bottom: 0, left: 0 }}>
-                        {this.props.smallHeaderContent}
-                    </Animated.View>
-                    <Animated.View style={{ opacity: heroTitleOpacity }}>
-                        {this.props.largeHeaderContent}
-                    </Animated.View>
-
-                </Animated.View>
-                {/* <Animated.ScrollView */}
-                {/* Add code for returning the position to up or down state */}
-                <ScrollView
-                    contentContainerStyle={{ paddingTop: HEADER_EXPANDED_HEIGHT, overflow: 'hidden' }}
+            <View style={styles.container} >
+                <Animated.ScrollView
+                    style={styles.scrollView}
+                    ref={scrollView => {
+                        this.state._scrollView = scrollView ? scrollView._component : null;
+                    }}
+                    onScrollEndDrag={this.onScrollEndSnapToEdge}
+                    onMomentumScrollEnd={this.onScrollEndSnapToEdge}
                     onScroll={Animated.event(
-                        [{
-                            nativeEvent: {
-                                contentOffset: {
-                                    y: this.state.scrollY
-                                }
-                            }
-                        }],
-                        //{ useNativeDriver: true }
+                        [
+                            {
+                                nativeEvent: { contentOffset: { y: this.state.scrollY } },
+                            },
+                        ],
+                        {
+                            useNativeDriver: true,
+                        }
                     )}
-                    scrollEventThrottle={16}>
-
-                    <View style={styles.contentWrapper}>
+                >
+                    <PlaceholderHeader />
+                    <View style={{ zIndex: 5, }}>
                         {this.props.children}
                     </View>
-                    {/* </Animated.ScrollView> */}
-                </ScrollView>
+                </Animated.ScrollView>
+                <AnimatedHeaderCollapsed
+                    animationRange={animationRange} style={{ backgroundColor: 'black', }}
+                >
+                    {this.props.renderCollapsedHeader(animationRange)}
+                </AnimatedHeaderCollapsed>
+                <AnimatedHeaderExpanded
+                    animationRange={animationRange} style={{ backgroundColor: 'black', }}
+                >
+                    {this.props.renderExpandedHeader(animationRange)}
+                </AnimatedHeaderExpanded>
             </View>
         )
     }

@@ -24,38 +24,39 @@ export default class BudgetScreen extends Component {
 
     render() {
         return (
-            <View style={{ borderLeftWidth: 8, borderColor: 'purple' }}>
+            <View style={{ height: '100%', borderLeftWidth: 8, borderColor: 'purple' }}>
                 <ExpandableHeader
-                    smallHeaderContent={(<DistributionBar />)}
-                    largeHeaderContent={<Text>hej</Text>}
+                    renderCollapsedHeader={animationRange => { return (<DistributionBar animationRange={animationRange} />) }}
+                    renderExpandedHeader={animationRange => { return (<Text>hej</Text>) }}
                 >
-
-                    <ExpandableCard onTitlePress={() => { console.log("event") }}>
-                        <ExpandableCard subCard={true}>
-                            <View style={{ margin: 5, marginBottom: 10 }}>
-                                <TransactionCard />
-                                <TransactionCard />
-                                <TransactionCard />
-                                <Text>BudgetStuff</Text>
-                                <View style={styles.buttonContainer}>
-                                    <Button
-                                        title="Show Transactions"
-                                        onPress={this.showTransactionDetails}
-                                    />
+                    <View style={{ backgroundColor: 'lightgray', }}>
+                        <ExpandableCard onTitlePress={() => { console.log("event") }}>
+                            <ExpandableCard subCard={true}>
+                                <View style={{ margin: 5, marginBottom: 10 }}>
+                                    <TransactionCard />
+                                    <TransactionCard />
+                                    <TransactionCard />
+                                    <Text>BudgetStuff</Text>
+                                    <View style={styles.buttonContainer}>
+                                        <Button
+                                            title="Show Transactions"
+                                            onPress={this.showTransactionDetails}
+                                        />
+                                    </View>
                                 </View>
-                            </View>
+                            </ExpandableCard>
                         </ExpandableCard>
-                    </ExpandableCard>
-                    <ExpandableCard />
-                    <ExpandableCard />
-                    <ExpandableCard />
-                    <ExpandableCard />
-                    <ExpandableCard />
-                    <ExpandableCard />
-                    <ExpandableCard />
-                    <ExpandableCard />
-                    <ExpandableCard />
-                    <View style={{ margin: 20 }} />
+                        <ExpandableCard />
+                        <ExpandableCard />
+                        <ExpandableCard />
+                        <ExpandableCard />
+                        <ExpandableCard />
+                        <ExpandableCard />
+                        <ExpandableCard />
+                        <ExpandableCard />
+                        <ExpandableCard />
+                        <View style={{ margin: 20 }} />
+                    </View>
                 </ExpandableHeader>
             </View>
         )

@@ -25,7 +25,7 @@ const StartScreenRouter = createMaterialTopTabNavigator(
     ,
     {
         swipeEnabled: true,
-        initialRouteName: 'Budget',
+        // initialRouteName: 'Overview',
         // tabBarOptions: {
         //     style: {
         //         backgroundColor: Color.highlight,

@@ -6,6 +6,7 @@ import GestureController from '../../components/GestureController/GestureControl
 import GraphContainer from '../../components/GraphContainer/GraphContainer'
 import { ScrollView } from 'react-native-gesture-handler';
 import ExpandableHeader from '../../components/ExpandableHeader/ExpandableHeader'
+// import Demo from '../../components/ExpandableHeader/ExpandableHeader'
 import RoundButton from '../../components/Button/RoundButton'
 
 const HEADER_EXPANDED_HEIGHT = 300
@@ -46,23 +47,31 @@ export default class OverviewScreen extends Component {
     }
 
     render() {
-        let largeHeader = (
-            <Text style={{ fontSize: 30, color: 'white', textAlign: 'center' }}> tasdf asdflk jasldfk asdlkfd</Text>
-        )
+        let largeHeader = animationRange => {
+            return (
+                <Text style={{ fontSize: 30, color: 'white', textAlign: 'center', alignSelf: 'center' }}> tasdf asdflk jasldfk asdlkfd</Text>
+            )
+        }
 
-        let smallHeader = (
-            <Text style={{ fontSize: 30, color: 'white', alignContent: 'center' }}> Alternative</Text>
-        )
+        let smallHeader = animationRange => {
+            return (
+                <Text style={{ fontSize: 30, color: 'white', alignContent: 'center' }}> Alternative</Text>
+            )
+        }
 
         return (
             <View style={styles.wrapper}>
                 <ExpandableHeader
-                    largeHeaderContent={largeHeader}
-                    smallHeaderContent={smallHeader}
+                    renderCollapsedHeader={smallHeader}
+                    renderExpandedHeader={largeHeader}
                 >
-
-                    <View style={styles.contentWrapper}>
+                    <View style={{ borderWidth: 8, borderColor: 'purple', flex: 1, backgroundColor: 'lightgray' }}>
                         <Text style={{ margin: 20 }} >First Tab Screen</Text>
+                        <Text style={{ margin: 20 }} >Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum </Text>
+                        <Text style={{ margin: 20 }} >Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum </Text>
+                        <Text style={{ margin: 20 }} >Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum </Text>
+                        <Text style={{ margin: 20 }} >Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum </Text>
+                        <Text style={{ margin: 20 }} >Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum </Text>
                         <Text style={{ margin: 20 }} >Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum </Text>
                         <Text style={{ margin: 20 }} >Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum </Text>
                         <Text style={{ margin: 20 }} >Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum </Text>
@@ -71,6 +80,7 @@ export default class OverviewScreen extends Component {
                         <Text style={{ margin: 20 }} >Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum </Text>
                     </View>
                 </ExpandableHeader>
+
                 <View style={styles.buttonContainer}>
                     <RoundButton
                         style={styles.button}

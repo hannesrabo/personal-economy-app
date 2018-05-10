@@ -6,16 +6,26 @@ import ExpandableHeader from '../../components/ExpandableHeader/ExpandableHeader
 
 class CategoryDetails extends Component {
     render() {
-        let smallHeader = (<Text style={{ color: 'white' }}>small</Text>)
-        let largeHader = (<Text style={{ color: 'white' }}>large</Text>)
+
+        let largeHeader = animationRange => {
+            return (
+                <Text style={{ fontSize: 30, color: 'white', textAlign: 'center' }}> tasdf asdflk jasldfk asdlkfd</Text>
+            )
+        }
+
+        let smallHeader = animationRange => {
+            return (
+                <Text style={{ fontSize: 30, color: 'white', alignContent: 'center' }}> Alternative</Text>
+            )
+        }
 
         return (
-            <View>
+            <View style={{ height: '100%', flex: 1 }}>
                 <ExpandableHeader
-                    smallHeaderContent={smallHeader}
-                    largeHeaderContent={largeHader}
+                    renderCollapsedHeader={smallHeader}
+                    renderExpandedHeader={largeHeader}
                 >
-                    <View style={{ borderTopWidth: 8, borderLeftWidth: 8, borderColor: 'purple', padding: 8 }}>
+                    <View style={{ borderTopWidth: 8, borderLeftWidth: 8, borderColor: 'purple', padding: 8, backgroundColor: 'lightgray' }}>
                         <Text>Details Screen</Text>
                         <CategoryOverviewCard />
 
