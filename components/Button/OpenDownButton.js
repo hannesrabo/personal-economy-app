@@ -35,17 +35,12 @@ export default class OpenDownButton extends React.Component {
         })
         return (
             <TouchableOpacity style={styles.buttonWrapper} onPress={this.buttonClick}>
-                <Animated.View styles={{
-                    //transform: [{ rotate: spin }]
-                }}>
-
-                    <Animated.Image
-                        style={[styles.image, {
-                            transform: [{ rotate: spin }]
-                        }]}
-                        source={require('../../res/down-arrow.png')}
-                    />
-                </Animated.View>
+                <Animated.Image
+                    style={[styles.image, {
+                        transform: [{ rotate: spin }]
+                    }]}
+                    source={require('../../res/down-arrow.png')}
+                />
             </TouchableOpacity>
         )
     }
@@ -53,12 +48,14 @@ export default class OpenDownButton extends React.Component {
 
 const styles = StyleSheet.create({
     buttonWrapper: {
-        // width: 50,
-        // height: 50,
+        width: 25,
+        height: 25,
+        marginTop: 1,
+        marginLeft: 5,
     },
     image: {
-        width: 40,
-        height: 40,
+        width: 25,
+        height: 25,
         resizeMode: 'contain',
     },
 })

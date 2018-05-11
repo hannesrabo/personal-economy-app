@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, ScrollView, Animated } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Animated, Dimensions } from 'react-native'
 import { AnimatedHeaderCollapsed, PlaceholderHeader, AnimatedHeaderExpanded } from './AnimatedHeader'
 import PropTypes from 'prop-types'
 
@@ -51,6 +51,7 @@ export default class ExpandableHeader extends React.Component {
             outputRange: [0, 1],
             extrapolate: 'clamp',
         })
+        const deviceHeight = Dimensions.get('window').height
 
         return (
             <View style={styles.container} >
@@ -73,7 +74,7 @@ export default class ExpandableHeader extends React.Component {
                     )}
                 >
                     <PlaceholderHeader />
-                    <View style={{ zIndex: 5, }}>
+                    <View style={{ zIndex: 5, minHeight: deviceHeight, backgroundColor: 'lightgray' }}>
                         {this.props.children}
                     </View>
                 </Animated.ScrollView>

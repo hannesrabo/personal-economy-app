@@ -2,6 +2,8 @@ import React from 'react'
 import { Text, View, Button, StyleSheet } from 'react-native'
 import NavigationService from '../../routing/NavigationService'
 import OpenDownButton from '../Button/OpenDownButton'
+import { TextInput } from 'react-native-gesture-handler'
+import PropTypes from 'prop-types'
 
 const styles = StyleSheet.create({
     boxWrapper: {
@@ -15,15 +17,25 @@ const styles = StyleSheet.create({
     },
     headerWrapper: {
         flexDirection: 'row',
-        margin: 10,
-        marginBottom: 0,
+        margin: 5,
         justifyContent: 'space-between',
+        alignItems: 'center',
     },
-    header: {
-        height: 50,
-        // width: '70%',
+    text: {
         fontSize: 20,
-        padding: 5,
+    },
+    headerText: {
+        paddingLeft: 20,
+    },
+    headerZoneTitle: {
+        padding: 8,
+        flex: 4,
+        flexDirection: 'row',
+    },
+    headerZoneBudget: {
+        flex: 3,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
     animatedContainer: {
         borderColor: '#eee',
@@ -40,7 +52,11 @@ export default class ExpandableCard extends React.Component {
     static defaultProps = {
         color: 'gray',
         title: 'Card Title',
-    };
+    }
+
+    static propTypes = {
+        id: PropTypes.string.isRequired,
+    }
 
     constructor(props) {
         super(props)
@@ -55,11 +71,7 @@ export default class ExpandableCard extends React.Component {
     }
 
     headerClick = () => {
-        if (this.props.onTitlePress)
-            this.props.onTitlePress()
-        this.setState({
-            expanded: !this.state.expanded
-        })
+        NavigationService.navigate('EditCategoryScreen', { id: this.props.id })
     }
 
     render() {
@@ -88,31 +100,40 @@ export default class ExpandableCard extends React.Component {
                 elevation={2}
             >
                 <View style={styles.headerWrapper}>
-                    <Text
-                        style={styles.header}
-                        onPress={this.headerClick}
-                    >
-                        {this.props.title}
-                    </Text>
-                    <Text
-                        style={[styles.header, { color: 'limegreen' }]}
-                    >
-                        $ 100
-                    </Text>
-                    <Text
-                        style={[styles.header, { color: 'red' }]}
-                    >
-                        -$ 50
-                    </Text>
-                    <OpenDownButton onPress={this.dropDownClick} />
+                    <View style={styles.headerZoneTitle}>
+                        <OpenDownButton onPress={this.dropDownClick} />
+                        <Text
+                            style={[styles.text, styles.headerText]}
+                            onPress={this.headerClick}
+                        >
+                            {this.props.title}
+                        </Text>
+                    </View>
+
+                    <View style={styles.headerZoneBudget}>
+                        <Text
+                            style={[styles.text, { color: 'limegreen', padding: 8 }]}
+                        >
+                            $ 100
+                        </Text>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
+                            <Text style={[styles.text, { color: 'red', padding: 8, paddingRight: 0 }]}>-$</Text>
+                            <TextInput
+                                keyboardType='numeric'
+                                maxLength={7}
+                                style={[styles.text, { color: 'red', padding: 6, }]}
+                            >
+                                50
+                            </TextInput>
+                        </View>
+                    </View>
                 </View>
                 <View
                     style={[styles.animatedContainer, heightStyle]}
                 >
-                    {/* Render the child components. They need their own margin */}
                     {this.props.children}
                 </View>
-            </View>
+            </View >
         )
     }
 }

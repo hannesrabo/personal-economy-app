@@ -5,7 +5,7 @@ import PropType from 'prop-types'
 export const EXPANDED_HEIGHT = 300
 export const COLLAPSED_HEIGHT = 50
 
-const _TRANSFORM_UP = COLLAPSED_HEIGHT // 0// EXPANDED_HEIGHT / 2 - 
+const _TRANSFORM_UP = COLLAPSED_HEIGHT
 
 const styles = StyleSheet.create({
     container: {
@@ -81,7 +81,7 @@ export class AnimatedHeaderExpanded extends React.Component {
 
         const opacityExpanded = {
             opacity: this.props.animationRange.interpolate({
-                inputRange: [0, 0.4, 1],
+                inputRange: [0, 0.6, 1],
                 outputRange: [1, 0, 0],
             }),
         }

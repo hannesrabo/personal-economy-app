@@ -65,7 +65,7 @@ export default class OverviewScreen extends Component {
                     renderCollapsedHeader={smallHeader}
                     renderExpandedHeader={largeHeader}
                 >
-                    <View style={{ borderWidth: 8, borderColor: 'purple', flex: 1, backgroundColor: 'lightgray' }}>
+                    <View style={{ borderTopWidth: 8, borderColor: 'purple', flex: 1, backgroundColor: 'lightgray' }}>
                         <Text style={{ margin: 20 }} >First Tab Screen</Text>
                         <Text style={{ margin: 20 }} >Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum </Text>
                         <Text style={{ margin: 20 }} >Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum </Text>

@@ -6,6 +6,7 @@ import AddPostRouter from './AddReceiptRouter'
 import StartScreenRouter from './StartScreenRouter'
 
 import TransactionOverviewScreen from '../screens/TransactionOverviewScreen/TransactionOverviewScreen'
+import EditCategoryScreen from '../screens/EditCategoryScreen/EditCategoryScreen'
 import NavigationHeader from '../components/NavigationHeader/NavigationHeader'
 
 const RootRouter = createStackNavigator(
@@ -18,6 +19,9 @@ const RootRouter = createStackNavigator(
         },
         TransactionOverview: {
             screen: TransactionOverviewScreen
+        },
+        EditCategoryScreen: {
+            screen: EditCategoryScreen,
         },
         AddPost: {
             screen: AddPostRouter,

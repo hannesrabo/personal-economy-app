@@ -11,12 +11,6 @@ import RootRouter from './routing/RootRouter';
 
 export default class App extends React.Component {
 	render() {
-		const config = {
-			velocityThreshold: 0.25,
-			directionalOffsetThreshold: 80
-		};
-
-		console.log("Renderer app")
 		return (
 			<View style={{ backgroundColor: '#000000', flex: 1 }}>
 				<View style={styles.wrapper}>
