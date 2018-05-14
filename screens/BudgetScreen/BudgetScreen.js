@@ -7,6 +7,8 @@ import DistributionBar from '../../components/Graphs/DistributionBar'
 import ExpandableHeader from '../../components/ExpandableHeader/ExpandableHeader'
 import TransactionCard from '../../components/TransactionCard/TransactionCard'
 
+import { ContextConsumer } from '../../components/Context/Context'
+
 import NavigationService from '../../routing/NavigationService'
 
 const styles = StyleSheet.create({
@@ -57,13 +59,24 @@ export default class BudgetScreen extends Component {
                     renderCollapsedHeader={animationRange => { return (<DistributionBar animationRange={animationRange} />) }}
                     renderExpandedHeader={animationRange => { return (<Text>hej</Text>) }}
                 >
-
-                    <View style={{ backgroundColor: 'lightgray' }}>
-                        {cardData.map(({ id }) => { return (<ExpandableCard key={`${id}`} id={`${id}`} />) })}
-                        <View style={{ margin: 20 }} />
-                    </View>
+                    <ContextConsumer>
+                        {context => (
+                            <View style={{ backgroundColor: 'lightgray' }}>
+                                {context.state.fontsLoaded ?
+                                    <Text style={{ fontFamily: 'nunito' }}>
+                                        This is a font test
+                                    </Text>
+                                    : null
+                                }
+                                <ExpandableCard key={`${1}`} data={{ id: 1, title: 'this is the title', value: 123, estimate: 321, subCards: null }} />
+                                {/* {context.state.budgetPosts.map((data) => { return (<ExpandableCard key={`${data.id}`} data={data} />) })} */}
+                                <View style={{ margin: 20 }} />
+                            </View>
+                        )}
+                    </ContextConsumer>
                 </ExpandableHeader>
             </View>
         )
     }
 }
+

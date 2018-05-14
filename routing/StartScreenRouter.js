@@ -17,7 +17,7 @@ const StartScreenRouter = createMaterialTopTabNavigator(
         // },
         // Overview: {
         //     screen: OverviewScreen,
-        // }, 
+        // },
         Budget: {
             screen: BudgetScreen,
         },

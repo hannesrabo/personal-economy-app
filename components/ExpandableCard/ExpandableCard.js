@@ -1,52 +1,10 @@
 import React from 'react'
-import { Text, View, Button, StyleSheet } from 'react-native'
+import { Text, View, Button, StyleSheet, TextInput } from 'react-native'
 import NavigationService from '../../routing/NavigationService'
 import OpenDownButton from '../Button/OpenDownButton'
-import { TextInput } from 'react-native-gesture-handler'
 import PropTypes from 'prop-types'
 
-const styles = StyleSheet.create({
-    boxWrapper: {
-        margin: 8,
-        marginBottom: 0,
-        borderRadius: 3,
-        backgroundColor: '#fff',
-        flexDirection: 'column',
-        paddingRight: 0,
-        overflow: 'hidden',
-    },
-    headerWrapper: {
-        flexDirection: 'row',
-        margin: 5,
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    text: {
-        fontSize: 20,
-    },
-    headerText: {
-        paddingLeft: 20,
-    },
-    headerZoneTitle: {
-        padding: 8,
-        flex: 4,
-        flexDirection: 'row',
-    },
-    headerZoneBudget: {
-        flex: 3,
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-    },
-    animatedContainer: {
-        borderColor: '#eee',
-        width: '100%',
-        overflow: 'hidden',
-    },
-    buttonContainer: {
-        width: '50%',
-        alignSelf: 'flex-end',
-    }
-})
+import { styles } from './ExpandableCardStyle'
 
 export default class ExpandableCard extends React.Component {
     static defaultProps = {
@@ -54,13 +12,8 @@ export default class ExpandableCard extends React.Component {
         title: 'Card Title',
     }
 
-    static propTypes = {
-        id: PropTypes.string.isRequired,
-    }
-
     constructor(props) {
         super(props)
-
         this.state = { expanded: false }
     }
 
@@ -71,11 +24,10 @@ export default class ExpandableCard extends React.Component {
     }
 
     headerClick = () => {
-        NavigationService.navigate('EditCategoryScreen', { id: this.props.id })
+        NavigationService.navigate('EditCategoryScreen', { id: this.props.data.id })
     }
 
     render() {
-
         // Custom styling if it is a sub category card
         let subCardStyle = {}
         if (this.props.subCard) {
@@ -106,7 +58,7 @@ export default class ExpandableCard extends React.Component {
                             style={[styles.text, styles.headerText]}
                             onPress={this.headerClick}
                         >
-                            {this.props.title}
+                            {this.props.data.title}
                         </Text>
                     </View>
 
@@ -114,16 +66,17 @@ export default class ExpandableCard extends React.Component {
                         <Text
                             style={[styles.text, { color: 'limegreen', padding: 8 }]}
                         >
-                            $ 100
+                            $ {this.props.data.estimate}
                         </Text>
-                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
-                            <Text style={[styles.text, { color: 'red', padding: 8, paddingRight: 0 }]}>-$</Text>
+
+                        <View style={styles.headerEditableValueContainer}>
+                            <Text style={[styles.text, styles.headerEditableValueCurrency]}>-$</Text>
                             <TextInput
                                 keyboardType='numeric'
                                 maxLength={7}
-                                style={[styles.text, { color: 'red', padding: 6, }]}
+                                style={[styles.text, styles.headerEditableValue]}
                             >
-                                50
+                                {this.props.data.value}
                             </TextInput>
                         </View>
                     </View>
