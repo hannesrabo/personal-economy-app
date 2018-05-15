@@ -2,41 +2,9 @@ import React from 'react';
 import { StyleSheet, Animated, View } from 'react-native'
 import PropType from 'prop-types'
 
-export const EXPANDED_HEIGHT = 300
-export const COLLAPSED_HEIGHT = 50
-
-const _TRANSFORM_UP = COLLAPSED_HEIGHT
-
-const styles = StyleSheet.create({
-    container: {
-        position: 'absolute',
-        flex: 0,
-        height: EXPANDED_HEIGHT,
-        width: '100%',
-        backgroundColor: 'transparent',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    headerCollapsed: {
-        position: 'absolute',
-        flex: 0,
-        height: COLLAPSED_HEIGHT,
-        width: '100%',
-        backgroundColor: 'black',
-    },
-    headerExpanded: {
-        position: 'absolute',
-        flex: 0,
-        height: EXPANDED_HEIGHT,
-        width: '100%',
-        backgroundColor: 'black',
-    },
-})
-
+import { styles, COLLAPSED_HEIGHT } from './AnimatedHeaderStyle'
 
 export class AnimatedHeaderCollapsed extends React.Component {
-    // const 
-
     render() {
         const transform = {
             transform: [
@@ -57,7 +25,7 @@ export class AnimatedHeaderCollapsed extends React.Component {
         }
 
         return (
-            <Animated.View style={[styles.container, transform, { zIndex: 6, height: COLLAPSED_HEIGHT }]}>
+            <Animated.View style={[styles.container, transform, styles.containerCollapsed]}>
                 <Animated.View style={[styles.headerCollapsed, opacityCollapsed]}>
                     {this.props.children}
                 </Animated.View>
@@ -73,7 +41,7 @@ export class AnimatedHeaderExpanded extends React.Component {
                 {
                     translateY: this.props.animationRange.interpolate({
                         inputRange: [0, 1],
-                        outputRange: [0, -_TRANSFORM_UP],
+                        outputRange: [0, -COLLAPSED_HEIGHT],
                     }),
                 },
             ],
@@ -100,7 +68,7 @@ export class PlaceholderHeader extends React.Component {
     render() {
         const i = 1;
         return (
-            <View style={{ flex: 0, height: EXPANDED_HEIGHT, width: '100%' }} />
+            <View style={styles.containerPlaceholderHeader} />
         )
     }
 }

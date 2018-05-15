@@ -1,23 +1,7 @@
 import React from 'react'
 import { Text, TouchableOpacity, Image, StyleSheet, } from 'react-native'
 
-
-const styles = StyleSheet.create({
-    buttonWrapper: {
-        // width: 50,
-        // height: 50, 
-        borderRadius: 35,
-        overflow: 'hidden',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'purple',
-    },
-    image: {
-        width: 70,
-        height: 70,
-        resizeMode: 'contain',
-    },
-})
+import { styles } from './RoundButtonStyle'
 
 export default class RoundButton extends React.Component {
     buttonClick = () => {

@@ -5,8 +5,6 @@ import { createMaterialTopTabNavigator } from 'react-navigation'
 import AddBudgetPost from '../screens/AddPostScreens/AddBudgetPost'
 import AddReceipt from '../screens/AddPostScreens/AddReceipt'
 
-import Color from '../color'
-
 const AddPostRouter = createMaterialTopTabNavigator(
     {
         Receipt: {

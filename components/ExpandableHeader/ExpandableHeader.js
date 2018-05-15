@@ -3,20 +3,9 @@ import { StyleSheet, Text, View, ScrollView, Animated, Dimensions } from 'react-
 import { AnimatedHeaderCollapsed, PlaceholderHeader, AnimatedHeaderExpanded } from './AnimatedHeader'
 import PropTypes from 'prop-types'
 
-export const scrollRangeForAnimation = 250;
+import { styles } from './ExpandableHeaderStyle'
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        height: '100%',
-        width: '100%',
-        backgroundColor: 'black',
-    },
-    scrollView: {
-        flex: 1,
-        zIndex: 5
-    }
-})
+export const scrollRangeForAnimation = 250;
 
 export default class ExpandableHeader extends React.Component {
     static propTypes = {
@@ -74,17 +63,17 @@ export default class ExpandableHeader extends React.Component {
                     )}
                 >
                     <PlaceholderHeader />
-                    <View style={{ zIndex: 5, minHeight: deviceHeight, backgroundColor: 'lightgray' }}>
+                    <View style={[styles.childContainer, { minHeight: deviceHeight }]}>
                         {this.props.children}
                     </View>
                 </Animated.ScrollView>
                 <AnimatedHeaderCollapsed
-                    animationRange={animationRange} style={{ backgroundColor: 'black', }}
+                    animationRange={animationRange}
                 >
                     {this.props.renderCollapsedHeader(animationRange)}
                 </AnimatedHeaderCollapsed>
                 <AnimatedHeaderExpanded
-                    animationRange={animationRange} style={{ backgroundColor: 'black', }}
+                    animationRange={animationRange}
                 >
                     {this.props.renderExpandedHeader(animationRange)}
                 </AnimatedHeaderExpanded>

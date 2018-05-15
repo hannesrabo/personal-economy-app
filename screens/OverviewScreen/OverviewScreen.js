@@ -1,37 +1,16 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Button, Animated } from 'react-native'
-import Color from '../../color'
 
-// import GestureController from '../../components/GestureController/GestureController'
 import GraphContainer from '../../components/GraphContainer/GraphContainer'
 import { ScrollView } from 'react-native-gesture-handler';
 import ExpandableHeader from '../../components/ExpandableHeader/ExpandableHeader'
 // import Demo from '../../components/ExpandableHeader/ExpandableHeader'
 import RoundButton from '../../components/Button/RoundButton'
 
+import { styles } from './OverviewScreenStyle'
+
 const HEADER_EXPANDED_HEIGHT = 300
 const HEADER_COLLAPSED_HEIGHT = 60
-
-const styles = StyleSheet.create({
-    wrapper: {
-        paddingBottom: 15,
-        flex: 1,
-        height: '100%',
-        position: 'relative',
-        // borderWidth: 1,
-        // borderColor: 'red',
-    },
-    contentWrapper: {
-        flex: 1,
-        borderTopWidth: 8,
-        borderColor: 'purple',
-    },
-    buttonContainer: {
-        position: 'absolute',
-        bottom: 20,
-        right: 20,
-    },
-})
 
 export default class OverviewScreen extends Component {
     constructor(props) {
@@ -49,13 +28,13 @@ export default class OverviewScreen extends Component {
     render() {
         let largeHeader = animationRange => {
             return (
-                <Text style={{ fontSize: 30, color: 'white', textAlign: 'center', alignSelf: 'center' }}> tasdf asdflk jasldfk asdlkfd</Text>
+                <Text style={styles.largeHeader}> tasdf asdflk jasldfk asdlkfd</Text>
             )
         }
 
         let smallHeader = animationRange => {
             return (
-                <Text style={{ fontSize: 30, color: 'white', alignContent: 'center' }}> Alternative</Text>
+                <Text style={styles.smallHeader}> Alternative</Text>
             )
         }
 
@@ -65,7 +44,7 @@ export default class OverviewScreen extends Component {
                     renderCollapsedHeader={smallHeader}
                     renderExpandedHeader={largeHeader}
                 >
-                    <View style={{ borderTopWidth: 8, borderColor: 'purple', flex: 1, backgroundColor: 'lightgray' }}>
+                    <View style={styles.contentWrapper}>
                         <Text style={{ margin: 20 }} >First Tab Screen</Text>
                         <Text style={{ margin: 20 }} >Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum </Text>
                         <Text style={{ margin: 20 }} >Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum </Text>

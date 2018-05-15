@@ -8,15 +8,9 @@ import ExpandableHeader from '../../components/ExpandableHeader/ExpandableHeader
 import TransactionCard from '../../components/TransactionCard/TransactionCard'
 
 import { ContextConsumer } from '../../components/Context/Context'
-
 import NavigationService from '../../routing/NavigationService'
 
-const styles = StyleSheet.create({
-    buttonContainer: {
-        width: '50%',
-        alignSelf: 'flex-end',
-    }
-})
+import { styles } from './BudgetScrenStyle'
 
 export default class BudgetScreen extends Component {
 
@@ -54,22 +48,22 @@ export default class BudgetScreen extends Component {
         ]
 
         return (
-            <View style={{ height: '100%', borderLeftWidth: 8, borderColor: 'purple' }}>
+            <View style={styles.wrapper}>
                 <ExpandableHeader
                     renderCollapsedHeader={animationRange => { return (<DistributionBar animationRange={animationRange} />) }}
                     renderExpandedHeader={animationRange => { return (<Text>hej</Text>) }}
                 >
                     <ContextConsumer>
                         {context => (
-                            <View style={{ backgroundColor: 'lightgray' }}>
+                            <View style={styles.contentWrapper}>
                                 {context.state.fontsLoaded ?
                                     <Text style={{ fontFamily: 'nunito' }}>
                                         This is a font test
                                     </Text>
                                     : null
                                 }
-                                <ExpandableCard key={`${1}`} data={{ id: 1, title: 'this is the title', value: 123, estimate: 321, subCards: null }} />
-                                {/* {context.state.budgetPosts.map((data) => { return (<ExpandableCard key={`${data.id}`} data={data} />) })} */}
+                                {/* <ExpandableCard key={`${1}`} data={{ id: 1, title: 'this is the title', value: 123, estimate: 321, subCards: null }} /> */}
+                                {context.state.budgetPosts.map((data) => { return (<ExpandableCard key={`${data.id}`} data={data} />) })}
                                 <View style={{ margin: 20 }} />
                             </View>
                         )}

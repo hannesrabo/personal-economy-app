@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
     boxWrapper: {
         margin: 8,
         marginBottom: 0,
-        borderRadius: 3,
+        borderRadius: 2,
         backgroundColor: '#fff',
         flexDirection: 'column',
         paddingRight: 0,

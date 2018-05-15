@@ -10,7 +10,7 @@ export class Context extends Component {
         this.state = {
             fontsLoaded: false,
             budgetPosts: [
-                { id: 1, title: 'this is the title', value: 123, estimate: 321, subCards: null }
+                { id: 1, title: 'this is context', value: 123, estimate: 321, subCards: null }
             ]
         };
     }

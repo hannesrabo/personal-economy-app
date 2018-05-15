@@ -3,29 +3,30 @@ import { Text, View } from 'react-native'
 
 import CategoryOverviewCard from '../../components/CategoryOverviewCard/CategoryOverviewCard'
 import ExpandableHeader from '../../components/ExpandableHeader/ExpandableHeader'
+import { styles } from './CategoryScreenStyle'
 
 class CategoryDetails extends Component {
     render() {
 
         let largeHeader = animationRange => {
             return (
-                <Text style={{ fontSize: 30, color: 'white', textAlign: 'center' }}> tasdf asdflk jasldfk asdlkfd</Text>
+                <Text style={styles.largeHeader}> tasdf asdflk jasldfk asdlkfd</Text>
             )
         }
 
         let smallHeader = animationRange => {
             return (
-                <Text style={{ fontSize: 30, color: 'white', alignContent: 'center' }}> Alternative</Text>
+                <Text style={styles.smallHeader}> Alternative</Text>
             )
         }
 
         return (
-            <View style={{ height: '100%', flex: 1 }}>
+            <View style={styles.wrapper}>
                 <ExpandableHeader
                     renderCollapsedHeader={smallHeader}
                     renderExpandedHeader={largeHeader}
                 >
-                    <View style={{ borderTopWidth: 8, borderLeftWidth: 8, borderColor: 'purple', padding: 8, backgroundColor: 'lightgray' }}>
+                    <View style={styles.contentWrapper}>
                         <Text>Details Screen</Text>
                         <CategoryOverviewCard />
 
