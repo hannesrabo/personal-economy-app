@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, Button, Animated } from 'react-native'
 import Color from '../../color'
 
-import GestureController from '../../components/GestureController/GestureController'
+// import GestureController from '../../components/GestureController/GestureController'
 import GraphContainer from '../../components/GraphContainer/GraphContainer'
 import { ScrollView } from 'react-native-gesture-handler';
 import ExpandableHeader from '../../components/ExpandableHeader/ExpandableHeader'
