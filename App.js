@@ -9,6 +9,8 @@ import NavigationService from './routing/NavigationService'
 import RootRouter from './routing/RootRouter';
 import { Context, ContextConsumer } from './components/Context/Context'
 
+import LoadingScreen from './screens/LoadingScreen/LoadingScreen'
+
 const styles = StyleSheet.create({
 	wrapper: {
 		flex: 1,
@@ -41,7 +43,8 @@ export default class App extends React.Component {
 		Font.loadAsync({
 			'nunito': require('./assets/fonts/Nunito-Light.ttf'),
 		}).then(() => {
-			this.context.updateFontsLoaded(true);
+			this.context.updateFontsLoaded(true)
+			this.context.updateLoadingStage(1)
 		})
 
 	}
@@ -50,16 +53,26 @@ export default class App extends React.Component {
 		return (
 			<View style={styles.wrapper}>
 				<Context ref={compRef => { this.context = compRef }}>
-					<RootRouter
-						ref={navigatorRef => {
-							NavigationService.setTopLevelNavigator(navigatorRef);
+					<ContextConsumer>
+						{context => {
+							return (
+								((context.state.loadingDone) ?
+									<RootRouter
+										ref={navigatorRef => {
+											NavigationService.setTopLevelNavigator(navigatorRef);
+										}}
+										onNavigationStateChange={(prevState, newState) => {
+											// Do some update? 
+										}}
+									/>
+									:
+									<LoadingScreen />
+								)
+							)
 						}}
-						onNavigationStateChange={(prevState, newState) => {
-							// Do some update? 
-						}}
-					/>
+					</ContextConsumer>
 				</Context>
-			</View>
+			</View >
 		);
 	}
 
