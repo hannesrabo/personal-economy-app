@@ -11,9 +11,12 @@ export class Context extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            // Loading
             fontsLoaded: false,
             loadingStage: 0.1,
             loadingDone: false,
+
+            // Budget data
             budgetPosts: [
                 { id: 1, title: 'this is context', value: 123, estimate: 321, subCards: null }
             ]
@@ -41,7 +44,10 @@ export class Context extends Component {
     render() {
         return (
             <MainContext.Provider value={{
+                // All state
                 state: this.state,
+
+                // Loading
                 updateFontsLoaded: this.updateFontsLoaded,
                 updateLoadingStage: this.updateLoadingStage,
                 updateLoadingDone: this.updateLoadingDone,

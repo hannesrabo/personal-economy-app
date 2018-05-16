@@ -41,7 +41,7 @@ export default class App extends React.Component {
 
 	componentDidMount() {
 		Font.loadAsync({
-			'nunito': require('./assets/fonts/Nunito-Light.ttf'),
+			'nunito': require('./assets/fonts/Nunito-Regular.ttf'),
 		}).then(() => {
 			this.context.updateFontsLoaded(true)
 			this.context.updateLoadingStage(1)

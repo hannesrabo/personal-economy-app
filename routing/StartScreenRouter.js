@@ -12,12 +12,12 @@ import OverviewScreen from '../screens/OverviewScreen/OverviewScreen'
 const StartScreenRouter = createMaterialTopTabNavigator(
     {
         // Commented out to change start view
-        Category: {
-            screen: CategoryScreen,
-        },
-        Overview: {
-            screen: OverviewScreen,
-        },
+        // Category: {
+        //     screen: CategoryScreen,
+        // },
+        // Overview: {
+        //     screen: OverviewScreen,
+        // },
         Budget: {
             screen: BudgetScreen,
         },

@@ -8,7 +8,7 @@ export const Color = {
     highlight_3_dark: '#246171',
 
     text_regular: 'black',
-    text_highlight: 'C05B34',
+    text_highlight: '#C05B34',
 
     background: '#EEEEEE',
     background_dark: '#111111',

@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
     textLarge: {
         color: Color.text_highlight,
         fontSize: 30,
+        fontFamily: 'nunito',
     },
     wrapperSmall: {
         flex: 1,
@@ -16,5 +17,6 @@ export const styles = StyleSheet.create({
     textSmall: {
         color: Color.text_highlight,
         fontSize: 20,
+        fontFamily: 'nunito',
     },
 })

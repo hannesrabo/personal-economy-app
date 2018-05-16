@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
     },
     contentWrapper: {
         flex: 1,
+        padding: 10,
         borderTopWidth: 8,
         borderRightWidth: 8,
         borderColor: Color.highlight_1,

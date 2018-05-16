@@ -1,15 +1,18 @@
 import React from 'react'
 import { Text, View, Button, StyleSheet, TextInput } from 'react-native'
-import NavigationService from '../../../routing/NavigationService'
 import OpenDownButton from '../../Button/OpenDownButton/OpenDownButton'
 import PropTypes from 'prop-types'
 
-import { styles } from './ExpandableCardStyle' 
+import { styles } from './ExpandableCardStyle'
 
 export default class ExpandableCard extends React.Component {
     static defaultProps = {
         color: 'gray',
         title: 'Card Title',
+    }
+
+    static propTypes = {
+        renderHeader: PropTypes.func.isRequired,
     }
 
     constructor(props) {
@@ -24,7 +27,9 @@ export default class ExpandableCard extends React.Component {
     }
 
     headerClick = () => {
-        NavigationService.navigate('EditCategoryScreen', { id: this.props.data.id })
+        if (this.props.headerClick) {
+            this.props.headerClick()
+        }
     }
 
     render() {
@@ -58,28 +63,11 @@ export default class ExpandableCard extends React.Component {
                             style={[styles.text, styles.headerText]}
                             onPress={this.headerClick}
                         >
-                            {this.props.data.title}
+                            {this.props.title}
                         </Text>
                     </View>
 
-                    <View style={styles.headerZoneBudget}>
-                        <Text
-                            style={[styles.text, { color: 'limegreen', padding: 8 }]}
-                        >
-                            $ {this.props.data.estimate}
-                        </Text>
-
-                        <View style={styles.headerEditableValueContainer}>
-                            <Text style={[styles.text, styles.headerEditableValueCurrency]}>-$</Text>
-                            <TextInput
-                                keyboardType='numeric'
-                                maxLength={7}
-                                style={[styles.text, styles.headerEditableValue]}
-                            >
-                                {this.props.data.value}
-                            </TextInput>
-                        </View>
-                    </View>
+                    {this.props.renderHeader()}
                 </View>
                 <View
                     style={[styles.animatedContainer, heightStyle]}

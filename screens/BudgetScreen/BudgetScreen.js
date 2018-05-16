@@ -1,22 +1,16 @@
 import React, { Component } from 'react'
 import { Text, ScrollView, View, StyleSheet, Button } from 'react-native'
 
-import ExpandableCard from '../../components/Expandable/ExpandableCard/ExpandableCard'
-import GraphContainer from '../../components/GraphContainer/GraphContainer'
+import ExpandableCardBudget from '../../components/Expandable/ExpandableCard/ExpandableCardBudget'
 import DistributionBar from '../../components/Graphs/DistributionBar'
 import ExpandableHeader from '../../components/Expandable/ExpandableHeader/ExpandableHeader'
 import TransactionCard from '../../components/TransactionCard/TransactionCard'
+import { LargeHeader } from '../../components/Text/Header/Header'
 
 import { ContextConsumer } from '../../components/Context/Context'
 import NavigationService from '../../routing/NavigationService'
 
 import { styles } from './BudgetScrenStyle'
-
-const LargeHeader = (
-    <View style={styles.largeHeaderWrapper}>  
-        <Text>Budget</Text>
-    </View>
-)
 
 export default class BudgetScreen extends Component {
 
@@ -57,19 +51,15 @@ export default class BudgetScreen extends Component {
             <View style={styles.wrapper}>
                 <ExpandableHeader
                     renderCollapsedHeader={animationRange => { return (<DistributionBar animationRange={animationRange} />) }}
-                    renderExpandedHeader={animationRange => { return (LargeHeader) }}
+                    renderExpandedHeader={animationRange => { return (<View style={styles.largeHeaderWrapper}><LargeHeader>Overview</LargeHeader></View>) }}
                 >
                     <ContextConsumer>
                         {context => (
                             <View style={styles.contentWrapper}>
-                                {context.state.fontsLoaded ?
-                                    <Text style={{ fontFamily: 'nunito' }}>
-                                        This is a font test
-                                    </Text>
-                                    : null
-                                }
-                                {/* <ExpandableCard key={`${1}`} data={{ id: 1, title: 'this is the title', value: 123, estimate: 321, subCards: null }} /> */}
-                                {context.state.budgetPosts.map((data) => { return (<ExpandableCard key={`${data.id}`} data={data} />) })}
+                                <LargeHeader style={styles.contentHeader}>Budget Categories</LargeHeader>
+
+                                {/* Rendering all the categories that are defined in the global context */}
+                                {context.state.budgetPosts.map((data) => { return (<ExpandableCardBudget key={`${data.id}`} data={data} />) })}
                                 <View style={{ margin: 20 }} />
                             </View>
                         )}

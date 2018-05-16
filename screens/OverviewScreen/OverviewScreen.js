@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Button, Animated } from 'react-native'
 
-import GraphContainer from '../../components/GraphContainer/GraphContainer'
 import { ScrollView } from 'react-native-gesture-handler';
 import ExpandableHeader from '../../components/Expandable/ExpandableHeader/ExpandableHeader'
-// import Demo from '../../components/ExpandableHeader/ExpandableHeader'
 import RoundButton from '../../components/Button/RoundButton/RoundButton'
+
+import { LargeHeader } from '../../components/Text/Header/Header'
 
 import { styles } from './OverviewScreenStyle'
 
@@ -45,6 +45,7 @@ export default class OverviewScreen extends Component {
                     renderExpandedHeader={largeHeader}
                 >
                     <View style={styles.contentWrapper}>
+                        <LargeHeader>Budget Overview</LargeHeader>
                         <Text style={{ margin: 20 }} >First Tab Screen</Text>
                         <Text style={{ margin: 20 }} >Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum </Text>
                         <Text style={{ margin: 20 }} >Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum Click me Lorem ipsum </Text>
