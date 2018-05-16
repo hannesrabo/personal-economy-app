@@ -1,16 +1,22 @@
 import React, { Component } from 'react'
 import { Text, ScrollView, View, StyleSheet, Button } from 'react-native'
 
-import ExpandableCard from '../../components/ExpandableCard/ExpandableCard'
+import ExpandableCard from '../../components/Expandable/ExpandableCard/ExpandableCard'
 import GraphContainer from '../../components/GraphContainer/GraphContainer'
 import DistributionBar from '../../components/Graphs/DistributionBar'
-import ExpandableHeader from '../../components/ExpandableHeader/ExpandableHeader'
+import ExpandableHeader from '../../components/Expandable/ExpandableHeader/ExpandableHeader'
 import TransactionCard from '../../components/TransactionCard/TransactionCard'
 
 import { ContextConsumer } from '../../components/Context/Context'
 import NavigationService from '../../routing/NavigationService'
 
 import { styles } from './BudgetScrenStyle'
+
+const LargeHeader = (
+    <View style={styles.largeHeaderWrapper}>  
+        <Text>Budget</Text>
+    </View>
+)
 
 export default class BudgetScreen extends Component {
 
@@ -51,7 +57,7 @@ export default class BudgetScreen extends Component {
             <View style={styles.wrapper}>
                 <ExpandableHeader
                     renderCollapsedHeader={animationRange => { return (<DistributionBar animationRange={animationRange} />) }}
-                    renderExpandedHeader={animationRange => { return (<Text>hej</Text>) }}
+                    renderExpandedHeader={animationRange => { return (LargeHeader) }}
                 >
                     <ContextConsumer>
                         {context => (

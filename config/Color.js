@@ -1,10 +1,11 @@
 export const Color = {
-    complimentary_color: '#246171',
-    complimentary_color_light: '#6DB5Bf',
+    highlight_1: '#F39744',
 
-    highlight: '#C05B34',
-    highlight_light: '#F39744',
-    highlight_dark: '#5C2F26',
+    highlight_2: '#C05B34',
+    highlight_2_dark: '#5C2F26',
+
+    highlight_3: '#6DB5Bf',
+    highlight_3_dark: '#246171',
 
     text_regular: 'black',
     text_highlight: 'C05B34',

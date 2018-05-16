@@ -3,9 +3,9 @@ import { View, Text, StyleSheet, Button, Animated } from 'react-native'
 
 import GraphContainer from '../../components/GraphContainer/GraphContainer'
 import { ScrollView } from 'react-native-gesture-handler';
-import ExpandableHeader from '../../components/ExpandableHeader/ExpandableHeader'
+import ExpandableHeader from '../../components/Expandable/ExpandableHeader/ExpandableHeader'
 // import Demo from '../../components/ExpandableHeader/ExpandableHeader'
-import RoundButton from '../../components/Button/RoundButton'
+import RoundButton from '../../components/Button/RoundButton/RoundButton'
 
 import { styles } from './OverviewScreenStyle'
 

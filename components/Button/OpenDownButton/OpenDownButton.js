@@ -39,7 +39,7 @@ export default class OpenDownButton extends React.Component {
                     style={[styles.image, {
                         transform: [{ rotate: spin }]
                     }]}
-                    source={require('../../res/down-arrow.png')}
+                    source={require('../down-arrow.png')}
                 />
             </TouchableOpacity>
         )

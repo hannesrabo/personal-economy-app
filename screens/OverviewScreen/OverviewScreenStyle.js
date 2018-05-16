@@ -4,7 +4,6 @@ import { DefaultSmallHeaderStyle, DefaultLargeHeaderStyle } from '../../config/F
 
 export const styles = StyleSheet.create({
     wrapper: {
-        paddingBottom: 15,
         flex: 1,
         height: '100%',
         position: 'relative',
@@ -12,7 +11,8 @@ export const styles = StyleSheet.create({
     contentWrapper: {
         flex: 1,
         borderTopWidth: 8,
-        borderColor: Color.highlight,
+        borderRightWidth: 8,
+        borderColor: Color.highlight_1,
         backgroundColor: Color.background,
     },
     buttonContainer: {

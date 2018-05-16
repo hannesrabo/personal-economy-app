@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Text, View } from 'react-native'
 
 import CategoryOverviewCard from '../../components/CategoryOverviewCard/CategoryOverviewCard'
-import ExpandableHeader from '../../components/ExpandableHeader/ExpandableHeader'
+import ExpandableHeader from '../../components/Expandable/ExpandableHeader/ExpandableHeader'
 import { styles } from './CategoryScreenStyle'
 
 class CategoryDetails extends Component {
@@ -10,7 +10,9 @@ class CategoryDetails extends Component {
 
         let largeHeader = animationRange => {
             return (
-                <Text style={styles.largeHeader}> tasdf asdflk jasldfk asdlkfd</Text>
+                <View style={styles.largeHeaderWrapper}>
+                    <Text style={styles.largeHeader}> tasdf asdflk jasldfk asdlkfd</Text>
+                </View>
             )
         }
 

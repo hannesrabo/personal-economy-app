@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { Color } from '../../config/Color'
+import { Color } from '../../../config/Color'
 
 export const EXPANDED_HEIGHT = 300
 export const COLLAPSED_HEIGHT = 50

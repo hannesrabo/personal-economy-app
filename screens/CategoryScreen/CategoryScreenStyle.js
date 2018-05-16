@@ -9,11 +9,17 @@ export const styles = StyleSheet.create({
     },
     smallHeader: DefaultSmallHeaderStyle,
     largeHeader: DefaultLargeHeaderStyle,
+    largeHeaderWrapper: {
+        height: '100%',
+        flex: 1,
+        borderRightWidth: 8,
+        borderColor: Color.highlight_2,
+    },
     contentWrapper: {
         borderTopWidth: 8,
         borderLeftWidth: 8,
         padding: 8,
-        borderColor: Color.highlight,
+        borderColor: Color.highlight_2,
         backgroundColor: Color.background,
     }
 })

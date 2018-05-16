@@ -15,7 +15,7 @@ export default class RoundButton extends React.Component {
             <TouchableOpacity style={styles.buttonWrapper} onPress={this.buttonClick}>
                 <Image
                     style={styles.image}
-                    source={require('../../res/down-arrow.png')}
+                    source={require('../down-arrow.png')}
                 />
             </TouchableOpacity>
         )

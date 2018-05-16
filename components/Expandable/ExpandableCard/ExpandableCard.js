@@ -1,10 +1,10 @@
 import React from 'react'
 import { Text, View, Button, StyleSheet, TextInput } from 'react-native'
-import NavigationService from '../../routing/NavigationService'
-import OpenDownButton from '../Button/OpenDownButton'
+import NavigationService from '../../../routing/NavigationService'
+import OpenDownButton from '../../Button/OpenDownButton/OpenDownButton'
 import PropTypes from 'prop-types'
 
-import { styles } from './ExpandableCardStyle'
+import { styles } from './ExpandableCardStyle' 
 
 export default class ExpandableCard extends React.Component {
     static defaultProps = {
