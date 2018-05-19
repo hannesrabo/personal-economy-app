@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
     barWrapper: {
-        backgroundColor: 'white',
+        backgroundColor: 'darkgray',
         height: 60,
     }
 })

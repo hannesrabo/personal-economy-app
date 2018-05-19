@@ -17,11 +17,11 @@ const RootRouter = createStackNavigator(
                 header: null, // Hiding the top bar for start pages
             }
         },
-        TransactionOverview: {
-            screen: TransactionOverviewScreen
-        },
         EditCategoryScreen: {
             screen: EditCategoryScreen,
+        },
+        TransactionOverview: {
+            screen: TransactionOverviewScreen
         },
         AddPost: {
             screen: AddPostRouter,
@@ -31,7 +31,6 @@ const RootRouter = createStackNavigator(
         },
     },
     {
-
         headerMode: 'screen',
         mode: 'modal',
         navigationOptions: ({ navigation }) => ({

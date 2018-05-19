@@ -44,6 +44,7 @@ export default class ExpandableCardBudget extends React.Component {
         }
     }
 
+    // This should be moved....
     renderBarInfo = (data) => {
         let left = data.percentage * 100 + '%'
         return (

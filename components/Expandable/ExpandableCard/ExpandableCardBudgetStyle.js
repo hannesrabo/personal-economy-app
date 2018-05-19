@@ -28,6 +28,7 @@ export const styles = StyleSheet.create({
     },
 
 
+    // This should be moved to the separate class
     barInfoWrapper: {
         backgroundColor: Color.highlight_3_light,
         height: 30,

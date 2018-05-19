@@ -1,5 +1,14 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, TextInput, ScrollView } from 'react-native'
+import { ContextConsumer } from '../../components/Context/Context'
+
+import TrackingBar from '../../components/TrackingBar/TrackingBar'
+import TrackingBarInfo from '../../components/TrackingBar/TrackingBarInfo'
+import OvalButton from '../../components/Button/OvalButton/OvalButton'
+import NavigationService from '../../routing/NavigationService'
+
+import { styles } from './EditCategoryScreenStyle'
+import { Color } from '../../config/Color';
 
 export default class EditCategoryScreen extends Component {
     constructor(props) {
@@ -7,16 +16,78 @@ export default class EditCategoryScreen extends Component {
 
         const { params } = this.props.navigation.state
 
+        let context = null
+
         this.state = {
             id: params.id,
         }
     }
 
+    categoryTitleChange = (newValue) => {
+        let data = this.context.state.budgetPosts[this.state.id]
+        data.title = newValue
+
+        this.context.updateBudgetPost(this.state.id, data)
+    }
+
+    categoryEstimateChange = (newValue) => {
+        let data = this.context.state.budgetPosts[this.state.id]
+        data.estimate = newValue
+
+        this.context.updateBudgetPost(this.state.id, data)
+    }
+
     render() {
         return (
-            <View>
-                <Text>Category edit: {this.state.id}</Text>
-            </View>
+            <ScrollView>
+                <ContextConsumer>
+                    {context => {
+                        let data = context.state.budgetPosts[this.state.id]
+                        this.context = context
+
+                        return (
+                            <View style={styles.wrapper}>
+                                <View style={styles.headerSection}>
+                                    <TextInput style={styles.categoryTitle} value={data.title} onChangeText={this.categoryTitleChange} />
+                                    <View style={styles.summaryCard} elevation={2}>
+                                        <View style={styles.summaryCardHeaderContainer}>
+                                            <Text style={styles.summaryCardHeader}>Category Overview</Text>
+                                        </View>
+                                        <TrackingBar
+                                            value={data.percentage}
+                                            barBackground={Color.background_medium}
+                                            barColor={Color.highlight_3}
+                                            barHeight={10}
+                                        />
+                                        <TrackingBarInfo id={this.state.id}>
+                                            <View style={styles.barInfoContainer}>
+                                                <Text style={styles.barText}> $ {data.value} </Text>
+                                                <Text style={styles.barText}> / </Text>
+                                                <TextInput style={styles.barTextInput} onChangeText={this.categoryEstimateChange} value={`${data.estimate}`} keyboardType='numeric' />
+                                            </View>
+                                        </TrackingBarInfo>
+                                        <View style={styles.buttonContainer}>
+                                            <OvalButton value="Show All Transactions" onPress={() => { NavigationService.navigate('TransactionOverview', { id: this.state.id }) }} />
+                                        </View>
+                                    </View>
+                                </View>
+                                <View style={styles.graphTrend} elevation={2}>
+
+                                </View>
+                                <View style={styles.graphDivision} elevation={2}>
+
+                                </View>
+                                <View style={styles.upcomingTransactions}>
+                                    <View style={styles.upcomingTransactionsContainer}>
+                                        <Text style={styles.upcomingTransactionText}>Next Upcoming: </Text>
+                                        <View style={styles.upcomingTransactionsCard} />
+                                    </View>
+                                </View>
+                            </View>
+                        )
+                    }}
+                </ContextConsumer>
+            </ScrollView>
         )
     }
 }

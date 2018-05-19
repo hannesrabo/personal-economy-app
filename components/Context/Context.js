@@ -47,6 +47,14 @@ export class Context extends Component {
         })
     }
 
+    updateBudgetPost = (id, newData) => {
+        let budgetPosts = this.state.budgetPosts
+        budgetPosts[id] = newData
+        this.setState({
+            budgetPosts,
+        })
+    }
+
     render() {
         return (
             <MainContext.Provider value={{
@@ -57,6 +65,7 @@ export class Context extends Component {
                 updateFontsLoaded: this.updateFontsLoaded,
                 updateLoadingStage: this.updateLoadingStage,
                 updateLoadingDone: this.updateLoadingDone,
+                updateBudgetPost: this.updateBudgetPost,
             }}>
                 {this.props.children}
             </MainContext.Provider>

@@ -10,11 +10,9 @@ export const Font = {
 export const DefaultSmallHeaderStyle = {
     fontSize: 20,
     color: Color.highlight_light,
-    textAlign: 'center',
 }
 
 export const DefaultLargeHeaderStyle = {
     fontSize: 30,
     color: Color.highlight,
-    textAlign: 'center',
 }
