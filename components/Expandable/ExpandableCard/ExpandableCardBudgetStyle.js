@@ -32,6 +32,7 @@ export const styles = StyleSheet.create({
         backgroundColor: Color.highlight_3_light,
         height: 30,
         margin: 15,
+        marginBottom: 0,
         marginTop: 0,
         flex: 1,
         flexDirection: 'row',
@@ -47,7 +48,6 @@ export const styles = StyleSheet.create({
         marginTop: 5,
         marginBottom: 0,
         overflow: 'hidden',
-        // borderWidth: 1,
         backgroundColor: 'transparent',
     },
     triangle: {
@@ -63,5 +63,30 @@ export const styles = StyleSheet.create({
         borderBottomColor: Color.highlight_3_light,
         position: 'relative',
         transform: [{ translateX: -5 }]
+    },
+
+
+    navigationContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        margin: 15,
+    },
+
+
+
+
+    upcomingTransactionsContainer: {
+        backgroundColor: Color.highlight_3_light,
+        padding: 10,
+    },
+
+    upcomingTransactionText: {
+        paddingBottom: 10,
+    },
+
+    upcomingTransactionsCard: {
+        height: 80,
+        backgroundColor: '#ffffff99'
     }
 })

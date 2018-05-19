@@ -1,17 +1,26 @@
 import React from 'react'
 import { View, Text, TextInput, Animated } from 'react-native'
+import PropTypes from 'prop-types'
 
 import ExpandableCard from './ExpandableCard'
 import NavigationService from '../../../routing/NavigationService'
 import TrackingBar from '../../TrackingBar/TrackingBar'
+import OvalButton from '../../Button/OvalButton/OvalButton'
 
 import { styles } from './ExpandableCardBudgetStyle'
 import { Color } from '../../../config/Color';
+import { ContextConsumer } from '../../Context/Context';
 
 
 export default class ExpandableCardBudget extends React.Component {
+    static propTypes = {
+        id: PropTypes.string.isRequired,
+    }
+
     constructor(props) {
         super(props)
+
+        let budgetPost = null
 
         this.state = {
             barRef: null,
@@ -35,15 +44,15 @@ export default class ExpandableCardBudget extends React.Component {
         }
     }
 
-    renderBarInfo = () => {
-        let left = this.props.data.percentage * 100 + '%'
+    renderBarInfo = (data) => {
+        let left = data.percentage * 100 + '%'
         return (
             <View>
                 <View style={styles.triangleContainer}>
                     <View style={[styles.triangle, { left: (left) }]} />
                 </View>
                 <View style={styles.barInfoWrapper}>
-                    <Text style={styles.barText}> {this.props.data.value} / {this.props.data.estimate}</Text>
+                    <Text style={styles.barText}> {data.value} / {data.estimate}</Text>
                 </View>
             </View>
         )
@@ -55,7 +64,7 @@ export default class ExpandableCardBudget extends React.Component {
                 <Text
                     style={[styles.text, { color: 'limegreen', padding: 8 }]}
                 >
-                    $ {this.props.data.estimate}
+                    $ {this.budgetPost.estimate}
                 </Text>
             </View>
         )
@@ -64,8 +73,8 @@ export default class ExpandableCardBudget extends React.Component {
     renderBar = () => {
         let paddingStyle = {
             padding: this.state.barAnimation.interpolate({
-                inputRange: [0, 1],
-                outputRange: [0, 15]
+                inputRange: [0, 0.01, 1],
+                outputRange: [0, 0, 15]
             }),
             paddingBottom: 0,
         }
@@ -78,7 +87,7 @@ export default class ExpandableCardBudget extends React.Component {
         return (
             <Animated.View style={[{ flex: 1, justifyContent: 'center' }, paddingStyle]}>
                 <TrackingBar
-                    value={this.props.data.percentage}
+                    value={this.budgetPost.percentage}
                     barBackground={Color.background_medium}
                     barColor={Color.highlight_3}
                     barHeight={barHeight}
@@ -87,19 +96,59 @@ export default class ExpandableCardBudget extends React.Component {
         )
     }
 
-    // NavigationService.navigate('EditCategoryScreen', { id: this.props.data.id }) }
+    renderNavigation = () => {
+        return (
+            <View style={styles.navigationContainer}>
+                <OvalButton
+                    value="Show Transactions"
+                    style={{ marginRight: 15, flex: 2 }}
+                    onPress={() => { NavigationService.navigate('TransactionOverview', { id: this.props.id }) }}
+                />
+                <OvalButton
+                    value="Edit"
+                    onPress={() => { NavigationService.navigate('EditCategoryScreen', { id: this.props.id }) }}
+                />
+            </View>
+        )
+    }
+
+    renderUpcomingTransactions = () => {
+        return (
+            <View style={styles.upcomingTransactionsContainer}>
+                <Text style={styles.upcomingTransactionText}>Next Upcoming: </Text>
+                <View style={styles.upcomingTransactionsCard} />
+            </View>
+        )
+    }
+
+    renderSeparator = () => {
+        return (
+            <View style={{ flex: 1, borderTopWidth: 2, borderColor: 'lightgray', marginLeft: 5, marginRight: 5 }}></View>
+        )
+    }
 
     render() {
         return (
-            <ExpandableCard
-                title={this.props.data.title}
-                renderHeader={this.renderHeader}
-                renderBar={this.renderBar}
-                onPress={this.cardPressed}
-            >
-                {this.renderBarInfo()}
-                {this.props.children}
-            </ExpandableCard>
+            <ContextConsumer>
+                {context => {
+                    let budgetPost = context.state.budgetPosts[this.props.id]
+                    this.budgetPost = budgetPost
+
+                    return (
+                        <ExpandableCard
+                            title={budgetPost.title}
+                            renderHeader={this.renderHeader}
+                            renderBar={this.renderBar}
+                            onPress={this.cardPressed}
+                        >
+                            {this.renderBarInfo(budgetPost)}
+                            {this.renderNavigation()}
+                            {(this.props.children) ? this.renderSeparator() : this.renderUpcomingTransactions()}
+                            {this.props.children}
+                        </ExpandableCard>
+                    )
+                }}
+            </ContextConsumer>
         )
     }
 } 

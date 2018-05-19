@@ -27,6 +27,10 @@ export default class ExpandableCard extends React.Component {
         this.setState({
             expanded: !this.state.expanded
         })
+
+        if (this.props.onPress) {
+            this.props.onPress(this.state.expanded)
+        }
     }
 
     cardClicked = () => {
@@ -69,30 +73,29 @@ export default class ExpandableCard extends React.Component {
                     style={styles.pressableArea}
                     onPress={this.cardClicked}
                 >
-                    <View>
-                        <View style={[styles.headerWrapper, borderStyle]}>
-                            <View style={styles.headerZoneTitle}>
-                                <OpenDownButton
-                                    ref={buttonRef => { if (!this.state.buttonRef) this.setState({ buttonRef }) }}
-                                    onPress={this.dropDownClick}
-                                />
-                                <Text
-                                    style={[styles.text, styles.headerText]}
-                                >
-                                    {this.props.title}
-                                </Text>
-                            </View>
-
-                            {this.props.renderHeader()}
+                    <View style={[styles.headerWrapper, borderStyle]}>
+                        <View style={styles.headerZoneTitle}>
+                            <OpenDownButton
+                                ref={buttonRef => { if (!this.state.buttonRef) this.setState({ buttonRef }) }}
+                                onPress={this.dropDownClick}
+                            />
+                            <Text
+                                style={[styles.text, styles.headerText]}
+                            >
+                                {this.props.title}
+                            </Text>
                         </View>
-                        {(this.props.renderBar) ? this.props.renderBar() : null}
+
+                        {this.props.renderHeader()}
                     </View>
-                    <View
-                        style={[styles.animatedContainer, heightStyle]}
-                    >
-                        {this.props.children}
-                    </View>
+                    {(this.props.renderBar) ? this.props.renderBar() : null}
                 </TouchableOpacity>
+                <View
+                    style={[styles.animatedContainer, heightStyle]}
+                >
+                    {this.props.children}
+                </View>
+
             </View>
         )
     }

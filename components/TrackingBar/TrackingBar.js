@@ -40,7 +40,8 @@ export default class TrackingBar extends React.Component {
         }
 
         let barBackground = {
-            backgroundColor: (this.props.barBackground ? this.props.barBackground : 'gray')
+            backgroundColor: (this.props.barBackground ? this.props.barBackground : 'gray'),
+            borderColor: (this.props.barBackground ? this.props.barBackground : 'gray'),
         }
 
         let barColor = {

@@ -59,7 +59,11 @@ export default class BudgetScreen extends Component {
                                 <LargeHeader style={styles.contentHeader}>Budget Categories</LargeHeader>
 
                                 {/* Rendering all the categories that are defined in the global context */}
-                                {context.state.budgetPosts.map((data) => { return (<ExpandableCardBudget key={`${data.id}`} data={data} />) })}
+                                {Object.keys(context.state.budgetPosts).map((cardId) => {
+                                    return (<ExpandableCardBudget key={cardId} id={cardId} />)
+                                })
+                                }
+
                                 <View style={{ margin: 20 }} />
                             </View>
                         )}
