@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, Button, StyleSheet, TextInput } from 'react-native'
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import OpenDownButton from '../../Button/OpenDownButton/OpenDownButton'
 import PropTypes from 'prop-types'
 
@@ -17,7 +17,10 @@ export default class ExpandableCard extends React.Component {
 
     constructor(props) {
         super(props)
-        this.state = { expanded: false }
+        this.state = {
+            expanded: false,
+            buttonRef: null
+        }
     }
 
     dropDownClick = () => {
@@ -26,9 +29,13 @@ export default class ExpandableCard extends React.Component {
         })
     }
 
-    headerClick = () => {
-        if (this.props.headerClick) {
-            this.props.headerClick()
+    cardClicked = () => {
+        if (this.state.buttonRef) {
+            this.state.buttonRef.buttonClick()
+        }
+
+        if (this.props.onPress) {
+            this.props.onPress(this.state.expanded)
         }
     }
 
@@ -44,11 +51,13 @@ export default class ExpandableCard extends React.Component {
             }
         }
 
+        let borderStyle = { borderBottomWidth: 1 }
+
         // Animation of height
-        let heightStyle = { borderTopWidth: 1 }
+        let heightStyle = {}
         if (!this.state.expanded) {
             heightStyle.height = 0
-            heightStyle.borderTopWidth = 0
+            borderStyle = 0
         }
 
         return (
@@ -56,25 +65,35 @@ export default class ExpandableCard extends React.Component {
                 style={[styles.boxWrapper, subCardStyle]}
                 elevation={2}
             >
-                <View style={styles.headerWrapper}>
-                    <View style={styles.headerZoneTitle}>
-                        <OpenDownButton onPress={this.dropDownClick} />
-                        <Text
-                            style={[styles.text, styles.headerText]}
-                            onPress={this.headerClick}
-                        >
-                            {this.props.title}
-                        </Text>
-                    </View>
-
-                    {this.props.renderHeader()}
-                </View>
-                <View
-                    style={[styles.animatedContainer, heightStyle]}
+                <TouchableOpacity
+                    style={styles.pressableArea}
+                    onPress={this.cardClicked}
                 >
-                    {this.props.children}
-                </View>
-            </View >
+                    <View>
+                        <View style={[styles.headerWrapper, borderStyle]}>
+                            <View style={styles.headerZoneTitle}>
+                                <OpenDownButton
+                                    ref={buttonRef => { if (!this.state.buttonRef) this.setState({ buttonRef }) }}
+                                    onPress={this.dropDownClick}
+                                />
+                                <Text
+                                    style={[styles.text, styles.headerText]}
+                                >
+                                    {this.props.title}
+                                </Text>
+                            </View>
+
+                            {this.props.renderHeader()}
+                        </View>
+                        {(this.props.renderBar) ? this.props.renderBar() : null}
+                    </View>
+                    <View
+                        style={[styles.animatedContainer, heightStyle]}
+                    >
+                        {this.props.children}
+                    </View>
+                </TouchableOpacity>
+            </View>
         )
     }
 }

@@ -2,19 +2,23 @@ import { StyleSheet } from 'react-native'
 
 export const styles = StyleSheet.create({
     boxWrapper: {
-        // margin: 8,
         marginBottom: 8,
-        borderRadius: 2,
         backgroundColor: '#fff',
         flexDirection: 'column',
         paddingRight: 0,
         overflow: 'hidden',
     },
+    pressableArea: {
+        flex: 1,
+        height: '100%',
+    },
     headerWrapper: {
+        flexWrap: 'wrap',
         flexDirection: 'row',
         margin: 5,
         justifyContent: 'space-between',
         alignItems: 'center',
+        borderColor: '#eee',
     },
     text: {
         fontSize: 20,
@@ -47,7 +51,6 @@ export const styles = StyleSheet.create({
         padding: 6,
     },
     animatedContainer: {
-        borderColor: '#eee',
         width: '100%',
         overflow: 'hidden',
     },

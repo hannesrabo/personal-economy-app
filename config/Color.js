@@ -4,6 +4,7 @@ export const Color = {
     highlight_2: '#C05B34',
     highlight_2_dark: '#5C2F26',
 
+    highlight_3_light: '#dfebed',
     highlight_3: '#6DB5Bf',
     highlight_3_dark: '#246171',
 
@@ -11,5 +12,6 @@ export const Color = {
     text_highlight: '#C05B34',
 
     background: '#EEEEEE',
+    background_medium: '#4C4C4C',
     background_dark: '#111111',
 }

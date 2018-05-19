@@ -5,6 +5,7 @@ import { Color } from '../../../config/Color'
 export const styles = StyleSheet.create({
     wrapperLarge: {
         flex: 1,
+        marginBottom: 5,
     },
     textLarge: {
         color: Color.text_highlight,

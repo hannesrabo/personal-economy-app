@@ -10,6 +10,7 @@ export default class OpenDownButton extends React.Component {
             rotation: new Animated.Value(0),
         }
     }
+
     buttonClick = () => {
         if (this.props.onPress)
             this.props.onPress()

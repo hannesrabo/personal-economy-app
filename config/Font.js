@@ -4,6 +4,7 @@ export const Font = {
     mainFont: 'nunito',
     fontsize_header: 30,
     fontsize_header_small: 20,
+    fontsize_normal: 15,
 }
 
 export const DefaultSmallHeaderStyle = {

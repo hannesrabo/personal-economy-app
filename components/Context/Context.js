@@ -16,9 +16,10 @@ export class Context extends Component {
             loadingStage: 0.1,
             loadingDone: false,
 
+
             // Budget data
             budgetPosts: [
-                { id: 1, title: 'this is context', value: 123, estimate: 321, subCards: null }
+                { id: 1, title: 'this is context', value: 123, estimate: 321, subCards: null, percentage: 1 }
             ]
         };
     }
