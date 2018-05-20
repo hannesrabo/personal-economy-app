@@ -19,12 +19,12 @@ export class Context extends Component {
 
             // Budget data
             budgetPosts: {
-                'id1': { title: 'this is context', value: 3123213, estimate: 321, subCards: null, percentage: 0.1 },
-                'id2': { title: 'this is context2', value: 123, estimate: 2, subCards: null, percentage: 0.2 },
-                'id3': { title: 'this other', value: 1, estimate: 22222, subCards: null, percentage: 0.9 },
-                'id4': { title: 'this other', value: 1, estimate: 22222, subCards: null, percentage: 0.9 },
-                'id5': { title: 'this other', value: 1, estimate: 22222, subCards: null, percentage: 0.9 },
-                'id6': { title: 'this other', value: 1, estimate: 22222, subCards: null, percentage: 0.9 },
+                'id1': { automatic: true, title: 'this is context', value: 3123213, estimate: 321, subCards: null, percentage: 0.1 },
+                'id2': { automatic: true, title: 'this is context2', value: 123, estimate: 2, subCards: null, percentage: 0.2 },
+                'id3': { automatic: true, title: 'this other', value: 1, estimate: 22222, subCards: null, percentage: 0.9 },
+                'id4': { automatic: true, title: 'this other', value: 1, estimate: 22222, subCards: null, percentage: 0.9 },
+                'id5': { automatic: true, title: 'this other', value: 1, estimate: 22222, subCards: null, percentage: 0.9 },
+                'id6': { automatic: true, title: 'this other', value: 1, estimate: 22222, subCards: null, percentage: 0.9 },
             }
         };
     }

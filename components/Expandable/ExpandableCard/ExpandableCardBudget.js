@@ -53,7 +53,7 @@ export default class ExpandableCardBudget extends React.Component {
                     <View style={[styles.triangle, { left: (left) }]} />
                 </View>
                 <View style={styles.barInfoWrapper}>
-                    <Text style={styles.barText}> {data.value} / {data.estimate}</Text>
+                    <Text style={styles.barText}> $ {data.value} / {data.estimate}</Text>
                 </View>
             </View>
         )

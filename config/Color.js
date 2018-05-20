@@ -12,6 +12,7 @@ export const Color = {
     text_highlight: '#C05B34',
 
     background: '#EEEEEE',
+    background_medium_light: '#7F7F7F',
     background_medium: '#4C4C4C',
     background_dark: '#111111',
 }

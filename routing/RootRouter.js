@@ -11,12 +11,12 @@ import NavigationHeader from '../components/NavigationHeader/NavigationHeader'
 
 const RootRouter = createStackNavigator(
     {
-        Overview: {
-            screen: StartScreenRouter,
-            navigationOptions: {
-                header: null, // Hiding the top bar for start pages
-            }
-        },
+        // Overview: {
+        //     screen: StartScreenRouter,
+        //     navigationOptions: {
+        //         header: null, // Hiding the top bar for start pages
+        //     }
+        // },
         EditCategoryScreen: {
             screen: EditCategoryScreen,
         },

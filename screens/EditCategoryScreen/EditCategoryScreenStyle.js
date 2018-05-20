@@ -8,11 +8,18 @@ export const styles = StyleSheet.create({
         height: '100%',
         backgroundColor: Color.background,
     },
+    title: {
+        margin: 15,
+        fontSize: 30,
+        color: Color.highlight_3_dark,
+        fontFamily: 'nunito',
+    },
 
 
 
     headerSection: {
         padding: 15,
+        paddingTop: 20,
     },
     summaryCardHeaderContainer: {
         paddingBottom: 8,
@@ -24,7 +31,7 @@ export const styles = StyleSheet.create({
         paddingBottom: 10,
         marginBottom: 10,
         fontSize: 30,
-        color: Color.highlight_3,
+        color: Color.highlight_3_dark,
         fontFamily: 'nunito',
     },
     summaryCard: {
@@ -57,28 +64,50 @@ export const styles = StyleSheet.create({
     },
 
 
-    graphTrend: {
-        backgroundColor: Color.background_dark,
-        height: 220,
-    },
-    graphDivision: {
+
+    graphContainer: {
+        borderTopWidth: 5,
+        borderBottomWidth: 5,
+        borderColor: Color.highlight_3,
         backgroundColor: Color.background_medium,
-        height: 220,
+        position: 'relative',
+        marginBottom: 15,
+    },
+    graphControllerContainer: {
+        position: 'absolute',
+        top: 15,
+        left: 0,
+        width: '100%',
+        zIndex: 5,
+        alignItems: 'center',
+    },
+    graphControllerButtonContainer: {
+        position: 'relative',
+        width: '70%',
     },
 
+    graphTrend: {
+        backgroundColor: Color.background_dark,
+        height: 320,
+    },
+    graphDivision: {
+        borderTopWidth: 3,
+        borderColor: Color.highlight_3_dark,
+        backgroundColor: Color.background_dark,
+        height: 260,
+    },
 
 
 
     upcomingTransactions: {
+        borderTopWidth: 3,
+        borderColor: Color.highlight_3,
         minHeight: 220,
         backgroundColor: Color.highlight_3_light,
     },
     upcomingTransactionsContainer: {
         backgroundColor: Color.highlight_3_light,
-        padding: 10,
-    },
-    upcomingTransactionText: {
-        paddingBottom: 10,
+        padding: 20,
     },
     upcomingTransactionsCard: {
         height: 80,
