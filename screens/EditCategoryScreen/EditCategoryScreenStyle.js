@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
     },
     title: {
         margin: 15,
+        marginTop: 5,
         fontSize: 30,
         color: Color.highlight_3_dark,
         fontFamily: 'nunito',
@@ -37,6 +38,7 @@ export const styles = StyleSheet.create({
     summaryCard: {
         backgroundColor: 'white',
         padding: 15,
+        marginBottom: 15,
     },
     summaryCardHeader: {
         fontSize: 20,

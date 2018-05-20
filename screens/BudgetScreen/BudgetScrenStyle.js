@@ -23,6 +23,6 @@ export const styles = StyleSheet.create({
         flex: 1,
     },
     contentHeader: {
-        color: Color.highlight_3,
+        color: Color.highlight_3_dark,
     },
 })

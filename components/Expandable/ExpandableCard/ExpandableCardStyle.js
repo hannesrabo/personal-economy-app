@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native'
 
 export const styles = StyleSheet.create({
     boxWrapper: {
-        marginBottom: 8,
+        marginBottom: 10,
         backgroundColor: '#fff',
         flexDirection: 'column',
         paddingRight: 0,

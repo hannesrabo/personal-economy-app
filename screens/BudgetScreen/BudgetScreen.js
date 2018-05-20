@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text, ScrollView, View, StyleSheet, Button } from 'react-native'
 
 import ExpandableCardBudget from '../../components/Expandable/ExpandableCard/ExpandableCardBudget'
+import ExpandableCardTransaction from '../../components/Expandable/ExpandableCard/ExpandableCardTransaction'
 import DistributionBar from '../../components/Graphs/DistributionBar'
 import ExpandableHeader from '../../components/Expandable/ExpandableHeader/ExpandableHeader'
 import TransactionCard from '../../components/TransactionCard/TransactionCard'
@@ -63,6 +64,10 @@ export default class BudgetScreen extends Component {
                                     return (<ExpandableCardBudget key={cardId} id={cardId} />)
                                 })
                                 }
+
+                                {Object.keys(context.state.transactions).map((cardId) => {
+                                    return (<ExpandableCardTransaction key={cardId} id={cardId}><Text>card overview screen</Text></ExpandableCardTransaction>)
+                                })}
 
                                 <View style={{ margin: 20 }} />
                             </View>

@@ -12,11 +12,9 @@ export default class OvalButton extends React.Component {
 
     render() {
         return (
-            <View elevation={2}>
-                <TouchableOpacity style={[styles.buttonWrapper, this.props.style]} onPress={this.buttonClick}>
-                    <Text style={styles.text}>{this.props.value}</Text>
-                </TouchableOpacity>
-            </View>
+            <TouchableOpacity style={[styles.buttonWrapper, this.props.style]} onPress={this.buttonClick}>
+                <Text style={styles.text}>{this.props.value}</Text>
+            </TouchableOpacity>
         )
     }
 }

@@ -28,6 +28,7 @@ export default class ExpandableCardBudget extends React.Component {
         }
     }
 
+    // Animating the bar
     cardPressed = (expanded) => {
         if (expanded) {
             this.state.barAnimation.setValue(1)

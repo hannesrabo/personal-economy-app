@@ -25,7 +25,16 @@ export class Context extends Component {
                 'id4': { automatic: true, title: 'this other', value: 1, estimate: 22222, subCards: null, percentage: 0.9 },
                 'id5': { automatic: true, title: 'this other', value: 1, estimate: 22222, subCards: null, percentage: 0.9 },
                 'id6': { automatic: true, title: 'this other', value: 1, estimate: 22222, subCards: null, percentage: 0.9 },
-            }
+            },
+
+            transactions: {
+                'id1': { title: 'transactions title', total: 121 },
+                'id2': { title: 'transactions title 2', total: 122 },
+                'id3': { title: 'transactions title 3', total: 123 },
+                'id4': { title: 'transactions title 4', total: 124 },
+                'id5': { title: 'transactions title 5', total: 125 },
+                'id6': { title: 'transactions title 6', total: 126 },
+            },
         };
     }
 

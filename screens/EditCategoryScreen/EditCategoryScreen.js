@@ -68,7 +68,7 @@ export default class EditCategoryScreen extends Component {
                                     <TextInput style={styles.categoryTitle} value={data.title} onChangeText={this.categoryTitleChange} />
                                     <View style={styles.summaryCard} elevation={2}>
                                         <View style={styles.summaryCardHeaderContainer}>
-                                            <Text style={styles.summaryCardHeader}>Transactions Overview</Text>
+                                            <Text style={styles.summaryCardHeader}>Overview</Text>
                                         </View>
                                         <TrackingBar
                                             value={data.percentage}
@@ -89,6 +89,14 @@ export default class EditCategoryScreen extends Component {
                                         <View style={styles.buttonContainer}>
                                             <OvalButton value="Show All Transactions" onPress={() => { NavigationService.navigate('TransactionOverview', { id: this.state.id }) }} />
                                         </View>
+                                    </View>
+
+                                    <View style={styles.summaryCard} elevation={2}>
+                                        <View style={styles.summaryCardHeaderContainer}>
+                                            <Text style={styles.summaryCardHeader}>Goals</Text>
+                                        </View>
+
+                                        <Text>These are some of the goals</Text>
                                     </View>
                                 </View>
 
