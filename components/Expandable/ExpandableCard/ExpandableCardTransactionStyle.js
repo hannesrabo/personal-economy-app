@@ -6,6 +6,13 @@ export const styles = StyleSheet.create({
         flex: 3,
         flexDirection: 'row',
         justifyContent: 'flex-end',
-        borderWidth: 1,
+    },
+    buttonContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        padding: 10,
+    },
+    text: {
+        fontSize: 20,
     },
 })

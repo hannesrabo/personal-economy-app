@@ -17,9 +17,9 @@ const RootRouter = createStackNavigator(
                 header: null, // Hiding the top bar for start pages
             }
         },
-        // EditCategoryScreen: {
-        //     screen: EditCategoryScreen,
-        // },
+        EditCategoryScreen: {
+            screen: EditCategoryScreen,
+        },
         TransactionOverview: {
             screen: TransactionOverviewScreen
         },
