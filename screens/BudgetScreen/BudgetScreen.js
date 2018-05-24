@@ -65,10 +65,6 @@ export default class BudgetScreen extends Component {
                                 })
                                 }
 
-                                {Object.keys(context.state.transactions).map((cardId) => {
-                                    return (<ExpandableCardTransaction key={cardId} id={cardId}><Text>card overview screen</Text></ExpandableCardTransaction>)
-                                })}
-
                                 <View style={{ margin: 20 }} />
                             </View>
                         )}

@@ -7,7 +7,7 @@ import { ContextConsumer } from '../Context/Context'
 
 export default class TrackingBarInfo extends React.Component {
     static propTypes = {
-        id: PropTypes.string.isRequired,
+        barValue: PropTypes.number.isRequired,
     }
 
     constructor(props) {
@@ -16,18 +16,24 @@ export default class TrackingBarInfo extends React.Component {
     }
 
     render() {
+        let colorThemeBox = {}
+        let colorThemeTriangle = {}
+        if (this.props.color) {
+            colorThemeBox.backgroundColor = this.props.color
+            colorThemeTriangle.borderBottomColor = this.props.color
+        }
+
         return (
             <ContextConsumer>
                 {context => {
-                    let data = context.state.budgetPosts[this.props.id]
-                    let left = data.percentage * 100 + '%'
+                    let left = this.props.barValue * 100 + '%'
 
                     return (
                         <View>
                             <View style={styles.triangleContainer}>
-                                <View style={[styles.triangle, { left: (left) }]} />
+                                <View style={[styles.triangle, { left: (left) }, colorThemeTriangle]} />
                             </View>
-                            <View style={[styles.barInfoWrapper]}>
+                            <View style={[styles.barInfoWrapper, colorThemeBox]}>
                                 {this.props.children}
                             </View>
                         </View>

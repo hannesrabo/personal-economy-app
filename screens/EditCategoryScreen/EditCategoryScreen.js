@@ -76,7 +76,7 @@ export default class EditCategoryScreen extends Component {
                                             barColor={Color.highlight_3}
                                             barHeight={10}
                                         />
-                                        <TrackingBarInfo id={this.state.id}>
+                                        <TrackingBarInfo barValue={data.percentage}>
                                             <View style={styles.barInfoContainer}>
                                                 <Text style={[styles.barText, textDisabledStyle]}> $ {data.value} </Text>
                                                 <Text style={[styles.barText, textDisabledStyle]}> / </Text>

@@ -5,6 +5,9 @@ import NavigationService from '../../routing/NavigationService'
 
 const styles = StyleSheet.create({
     componentWrapper: {
+        position: 'relative',
+        top: 0,
+        left: 0,
         height: 50,
         flexDirection: 'row',
         justifyContent: 'center',

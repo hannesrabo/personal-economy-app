@@ -1,5 +1,6 @@
 export const Color = {
     highlight_1: '#F39744',
+    highlight_1_light: '#f7e1ce',
 
     highlight_2: '#C05B34',
     highlight_2_dark: '#5C2F26',
