@@ -16,8 +16,6 @@ To build an application binary you will need an account with expo and run the fo
 $ exp build:android
 ```
 
-# Screenshots
+## Screenshots
 
-![screenshot-1](/screenshots/screenshot-1.jpg)
-![screenshot-2](/screenshots/screenshot-2.jpg)
-![screenshot-3](/screenshots/screenshot-3.jpg)
+![screenshot-all](/screenshots/screenshot-all.jpg)
